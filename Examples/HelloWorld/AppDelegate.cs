@@ -53,15 +53,14 @@ namespace HelloWorld
 			window.RootViewController = rootViewController;
 			
 			// create a custom sparrow stage (does not work)
-			Game game = new Game(frame.Size.Width, frame.Size.Height);
-			
+			GameStage game = new GameStage(frame.Size.Width, frame.Size.Height);
 			game.Color = 0x0000ff;
 			sparrowView.Stage = game;
 			
 			// create a core sparrow stage (working)
-			// SPStage stage = new SPStage(frame.Size.Width, frame.Size.Height);
-			// stage.Color = 0x0000ff;
-			// sparrowView.Stage = stage;
+			SPStage stage = new SPStage(frame.Size.Width, frame.Size.Height);
+			stage.Color = 0x0000ff;
+			sparrowView.Stage = stage;
 			
 			// make the window visible
 			window.MakeKeyAndVisible();
