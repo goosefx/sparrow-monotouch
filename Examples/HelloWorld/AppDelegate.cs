@@ -52,12 +52,14 @@ namespace HelloWorld
 			// set root view controller
 			window.RootViewController = rootViewController;
 			
-			// create a custom sparrow stage (does not work)
-			GameStage game = new GameStage(frame.Size.Width, frame.Size.Height);
-			game.Color = 0x0000ff;
-			sparrowView.Stage = game;
+			// create a custom sparrow stage (does not work by default)
+			// you have to regenerate Sparrow.dll without /e switch of btouch :(
 			
-			// create a core sparrow stage (working)
+			// GameStage game = new GameStage(frame.Size.Width, frame.Size.Height);
+			// game.Color = 0x0000ff;
+			// sparrowView.Stage = game;
+			
+			// create a core sparrow stage (working by default)
 			SPStage stage = new SPStage(frame.Size.Width, frame.Size.Height);
 			stage.Color = 0x0000ff;
 			sparrowView.Stage = stage;

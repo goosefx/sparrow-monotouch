@@ -63,6 +63,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+    <Reference Include="Sparrow">
+      <HintPath>..\..\Sparrow\bin\Debug\Sparrow.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -78,11 +81,5 @@
     <Content Include="Default%402x.png" />
     <Content Include="Icon.png" />
     <Content Include="Icon%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Sparrow\Sparrow.csproj">
-      <Project>{6ACAC2CE-7D95-4518-839E-7AA5C3A94969}</Project>
-      <Name>Sparrow</Name>
-    </ProjectReference>
   </ItemGroup>
 </Project>

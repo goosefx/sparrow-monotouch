@@ -10,14 +10,21 @@
 
 ## Status Quo
 
-Currently only a few classes are bound to MonoTouch. So far the bindings seems to work with one exception:
+Currently only a few classes are bound to MonoTouch. So far the bindings seems to work with one exception: **YOU CAN'T DERRIVE FROM A SPARROW CLASS !!!**
 
-**YOU CAN'T DERRIVE FROM A SPARROW CLASS !!!**
+**UPDATE**
 
-That's currently a stopper and I don't know why. Can anybody help me out?
+I now have found the reason for this: the `/e` argument of `btouch` (see bug [#3234](https://bugzilla.xamarin.com/show_bug.cgi?id=3234)). That's why `mtouch` does not generate subclassable types. To bad that `MonoDevelop` does not allow me to change this default behavior (for Binding Projects). As a workaround you have to run `btouch` again but without `/e`:
 
+	/Developer/MonoTouch/usr/bin/btouch /d:DEBUG ApiDefinition.cs /s:StructsAndEnums.cs /tmpdir:obj/Debug/ios/ /sourceonly:obj/Debug/ios/sources.list	
+And of cause every following build step :( 
+	
+	/Developer/MonoTouch/usr/bin/smcs /noconfig /debug:full /debug+ /optimize- /out:obj/Debug/Sparrow.dll …
+	cp '/Users/marcus/Projects/iOS/sparrow-monotouch/Sparrow/obj/Debug/Sparrow.dll.mdb' '/Users/marcus/Projects/iOS/sparrow-monotouch/Sparrow/bin/Debug/Sparrow.dll.mdb'
+	cp '/Users/marcus/Projects/iOS/sparrow-monotouch/Sparrow/obj/Debug/Sparrow.dll' '/Users/marcus/Projects/iOS/sparrow-monotouch/Sparrow/bin/Debug/Sparrow.dll'
+  
 
-## How to create universial static library
+## How to create universial static library libSparrow.a
 
 	$ git clone https://github.com/PrimaryFeather/Sparrow-Framework.git
 
