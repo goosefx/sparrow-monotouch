@@ -1,0 +1,7 @@
+# MonoDevelop User Preferences
+*.pidb
+*.userprefs
+
+# Build Folders 
+bin
+obj

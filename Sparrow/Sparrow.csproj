@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6ACAC2CE-7D95-4518-839E-7AA5C3A94969}</ProjectGuid>
+    <ProjectTypeGuids>{F5B4F3BC-B597-4E2B-B552-EF5D8A32436F};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Sparrow</RootNamespace>
+    <AssemblyName>Sparrow</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="monotouch" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Xamarin.ObjcBinding.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="libSparrow-debug.linkwith.cs">
+      <DependentUpon>libSparrow-debug.a</DependentUpon>
+    </Compile>
+    <Compile Include="Extras\SPDisplayObjectContainer.cs" />
+    <Compile Include="libSparrow-release.linkwith.cs">
+      <DependentUpon>libSparrow-release.a</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingNativeLibrary Include="libSparrow-debug.a" />
+    <ObjcBindingNativeLibrary Include="libSparrow-release.a" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="objc_header\" />
+    <Folder Include="Extras\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="objc_header\SPALSound.h" />
+    <None Include="objc_header\SPALSoundChannel.h" />
+    <None Include="objc_header\SPAnimatable.h" />
+    <None Include="objc_header\Sparrow.h" />
+    <None Include="objc_header\SPAudioEngine.h" />
+    <None Include="objc_header\SPAVSound.h" />
+    <None Include="objc_header\SPAVSoundChannel.h" />
+    <None Include="objc_header\SPBitmapChar.h" />
+    <None Include="objc_header\SPBitmapFont.h" />
+    <None Include="objc_header\SPButton.h" />
+    <None Include="objc_header\SPCompiledSprite.h" />
+    <None Include="objc_header\SPDelayedInvocation.h" />
+    <None Include="objc_header\SPDisplayObject.h" />
+    <None Include="objc_header\SPDisplayObject_Internal.h" />
+    <None Include="objc_header\SPDisplayObjectContainer.h" />
+    <None Include="objc_header\SPEnterFrameEvent.h" />
+    <None Include="objc_header\SPEvent.h" />
+    <None Include="objc_header\SPEvent_Internal.h" />
+    <None Include="objc_header\SPEventDispatcher.h" />
+    <None Include="objc_header\SPGLTexture.h" />
+    <None Include="objc_header\SPImage.h" />
+    <None Include="objc_header\SPJuggler.h" />
+    <None Include="objc_header\SPMacros.h" />
+    <None Include="objc_header\SPMatrix.h" />
+    <None Include="objc_header\SPMovieClip.h" />
+    <None Include="objc_header\SPNSExtensions.h" />
+    <None Include="objc_header\SPPoint.h" />
+    <None Include="objc_header\SPPoolObject.h" />
+    <None Include="objc_header\SPQuad.h" />
+    <None Include="objc_header\SPRectangle.h" />
+    <None Include="objc_header\SPRenderSupport.h" />
+    <None Include="objc_header\SPRenderTexture.h" />
+    <None Include="objc_header\SPSound.h" />
+    <None Include="objc_header\SPSoundChannel.h" />
+    <None Include="objc_header\SPSprite.h" />
+    <None Include="objc_header\SPStage.h" />
+    <None Include="objc_header\SPStage_Internal.h" />
+    <None Include="objc_header\SPSubTexture.h" />
+    <None Include="objc_header\SPTextField.h" />
+    <None Include="objc_header\SPTexture.h" />
+    <None Include="objc_header\SPTextureAtlas.h" />
+    <None Include="objc_header\SPTouch.h" />
+    <None Include="objc_header\SPTouch_Internal.h" />
+    <None Include="objc_header\SPTouchEvent.h" />
+    <None Include="objc_header\SPTouchProcessor.h" />
+    <None Include="objc_header\SPTransitions.h" />
+    <None Include="objc_header\SPTween.h" />
+    <None Include="objc_header\SPTweenedProperty.h" />
+    <None Include="objc_header\SPUtils.h" />
+    <None Include="objc_header\SPView.h" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,78 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sparrow", "Sparrow\Sparrow.csproj", "{6ACAC2CE-7D95-4518-839E-7AA5C3A94969}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{7415AC8E-7FE6-482D-AD96-21C93E5615EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld", "Examples\HelloWorld\HelloWorld.csproj", "{BA173947-0754-41AE-B736-B0809389DB2E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6ACAC2CE-7D95-4518-839E-7AA5C3A94969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ACAC2CE-7D95-4518-839E-7AA5C3A94969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ACAC2CE-7D95-4518-839E-7AA5C3A94969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ACAC2CE-7D95-4518-839E-7AA5C3A94969}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA173947-0754-41AE-B736-B0809389DB2E}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{BA173947-0754-41AE-B736-B0809389DB2E}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{BA173947-0754-41AE-B736-B0809389DB2E}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{BA173947-0754-41AE-B736-B0809389DB2E}.Debug|iPhone.Build.0 = Debug|iPhone
+		{BA173947-0754-41AE-B736-B0809389DB2E}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{BA173947-0754-41AE-B736-B0809389DB2E}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{BA173947-0754-41AE-B736-B0809389DB2E}.Release|Any CPU.ActiveCfg = Release|iPhoneSimulator
+		{BA173947-0754-41AE-B736-B0809389DB2E}.Release|Any CPU.Build.0 = Release|iPhoneSimulator
+		{BA173947-0754-41AE-B736-B0809389DB2E}.Release|iPhone.ActiveCfg = Release|iPhone
+		{BA173947-0754-41AE-B736-B0809389DB2E}.Release|iPhone.Build.0 = Release|iPhone
+		{BA173947-0754-41AE-B736-B0809389DB2E}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{BA173947-0754-41AE-B736-B0809389DB2E}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BA173947-0754-41AE-B736-B0809389DB2E} = {7415AC8E-7FE6-482D-AD96-21C93E5615EB}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Examples\HelloWorld\HelloWorld.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.inheritsSet = null
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.IndentSwitchBody = True
+		$2.AnonymousMethodBraceStyle = DoNotChange
+		$2.PropertyBraceStyle = NextLine
+		$2.PropertyGetBraceStyle = NextLine
+		$2.PropertySetBraceStyle = NextLine
+		$2.EventBraceStyle = NextLine
+		$2.EventAddBraceStyle = NextLine
+		$2.EventRemoveBraceStyle = NextLine
+		$2.StatementBraceStyle = NextLine
+		$2.IfElseBraceForcement = AddBraces
+		$2.ForBraceForcement = AddBraces
+		$2.WhileBraceForcement = AddBraces
+		$2.UsingBraceForcement = AddBraces
+		$2.FixedBraceForcement = AddBraces
+		$2.PlaceElseOnNewLine = True
+		$2.PlaceElseIfOnNewLine = True
+		$2.PlaceCatchOnNewLine = True
+		$2.PlaceFinallyOnNewLine = True
+		$2.PlaceWhileOnNewLine = True
+		$2.BeforeMethodDeclarationParentheses = False
+		$2.BeforeMethodCallParentheses = False
+		$2.BeforeConstructorDeclarationParentheses = False
+		$2.BeforeIndexerDeclarationBracket = False
+		$2.BeforeDelegateDeclarationParentheses = False
+		$2.AfterDelegateDeclarationParameterComma = True
+		$2.NewParentheses = False
+		$2.SpacesBeforeBrackets = False
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+	EndGlobalSection
+EndGlobal
