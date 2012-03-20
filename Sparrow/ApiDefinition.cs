@@ -37,6 +37,46 @@ namespace Sparrow
 	}
 	#endregion
 	
+	#region SPPoolObject (TODO)
+	
+	[BaseType (typeof(NSObject))]
+	public interface SPPoolObject
+	{
+		
+	}
+	
+	#endregion
+	
+	#region SPPoint (TODO)
+	
+	[BaseType (typeof(SPPoolObject))]
+	public interface SPPoint
+	{
+		
+	}
+	
+	#endregion
+	
+	#region SPRectangle (TODO)
+	
+	[BaseType (typeof(SPPoolObject))]
+	public interface SPRectangle
+	{
+		
+	}
+	
+	#endregion
+	
+	#region SPMatrix (TODO)
+	
+	[BaseType (typeof(SPPoolObject))]
+	public interface SPMatrix
+	{
+		
+	}
+	
+	#endregion
+	
 	#region SPNSExtensions (TODO) 
 	#endregion
 
@@ -50,11 +90,268 @@ namespace Sparrow
 	#endregion
 	
 	#region SPDisplayObject (TODO) 
+	
+	/// <summary>
+	/// The SPDisplayObject class is the base class for all objects that are rendered on the screen.
+	/// </summary>
+	/// <remarks>
+	/// The SPDisplayObject class is the base class for all objects that are rendered on the screen.
+	/// 
+	/// In Sparrow, all displayable objects are organized in a display tree. Only objects that are part of
+	/// the display tree will be displayed (rendered). 
+	/// 
+	/// The display tree consists of leaf nodes (SPImage, SPQuad) that will be rendered directly to
+	/// the screen, and of container nodes (subclasses of SPDisplayObjectContainer, like SPSprite).
+	/// A container is simply a display object that has child nodes - which can, again, be either leaf
+	/// nodes or other containers. 
+	/// 
+	/// At the root of the display tree, there is the SPStage, which is a container, too. To create a
+	/// Sparrow application, you let your main class inherit from SPStage, and build up your display
+	/// tree from there.
+	/// 
+	/// A display object has properties that define its position in relation to its parent
+	/// (`X`, `Y`), as well as its rotation and scaling factors (`ScaleX`, `ScaleY`). Use the `Alpha` and
+	/// `Visible` properties to make an object translucent or invisible.
+	/// 
+	/// Every display object may be the target of touch events. If you don't want an object to be
+	/// touchable, you can disable the `touchable` property. When it's disabled, neither the object
+	/// nor its children will receive any more touch events.
+	/// </remarks>
 	[Abstract]
 	[BaseType (typeof(SPEventDispatcher))]
+	[DisableDefaultCtor]
 	public interface SPDisplayObject
 	{
+		#region Properties
 		
+		/// <summary>
+		/// The x coordinate of the object relative to the local coordinates of the parent.
+		/// </summary>
+		[Export("x")]
+		float X
+		{
+			get;
+			set;
+		}
+		
+		/// <summary>
+		/// The y coordinate of the object relative to the local coordinates of the parent.
+		/// </summary>
+		[Export("y")]
+		float Y
+		{
+			get;
+			set;
+		}
+		
+		/// <summary>
+		/// The x coordinate of the object's origin in its own coordinate space (default: 0).
+		/// </summary>
+		[Export("pivotX")]
+		float PivotX
+		{
+			get;
+			set;
+		}
+		
+		/// <summary>
+		/// The y coordinate of the object's origin in its own coordinate space (default: 0).
+		/// </summary>
+		[Export("pivotY")]
+		float PivotY
+		{
+			get;
+			set;
+		}
+		
+		/// <summary>
+		/// The horizontal scale factor. "1" means no scale, negative values flip the object.
+		/// </summary>
+		[Export("scaleX")]
+		float ScaleX
+		{
+			get;
+			set;
+		}
+	
+		/// <summary>
+		/// The vertical scale factor. "1" means no scale, negative values flip the object.
+		/// </summary>
+		[Export("scaleY")]
+		float ScaleY
+		{
+			get;
+			set;
+		}
+		
+		/// <summary>
+		/// The width of the object in points.
+		/// </summary>
+		[Export("width")]
+		float Width
+		{
+			get;
+			set;
+		}
+		
+		/// <summary>
+		/// The height of the object in points.
+		/// </summary>
+		[Export("height")]
+		float Height
+		{
+			get;
+			set;
+		}
+		
+		/// <summary>
+		/// The rotation of the object in radians. (In Sparrow, all angles are measured in radians.)
+		/// </summary>
+		[Export("rotation")]
+		float Rotation
+		{
+			get;
+			set;
+		}
+		
+		/// <summary>
+		/// The opacity of the object. 0 = transparent, 1 = opaque.
+		/// </summary>
+		[Export("alpha")]
+		float Alpha
+		{
+			get;
+			set;
+		}
+		
+		/// <summary>
+		/// The visibility of the object. An invisible object will be untouchable.
+		/// </summary>
+		[Export("visible")]
+		bool Visible
+		{
+			get;
+			set;
+		}
+		
+		/// <summary>
+		/// Indicates if this object (and its children) will receive touch events.
+		/// </summary>
+		[Export("touchable")]
+		bool Touchable
+		{
+			get;
+			set;
+		}
+		
+		/// <summary>
+		/// The bounds of the object relative to the local coordinates of the parent.
+		/// </summary>
+		[Export("bounds")]
+		SPRectangle Bounds
+		{
+			get;
+		}
+		
+		/// <summary>
+		/// The display object container that contains this display object.
+		/// </summary>
+		[Export("parent")]
+		SPDisplayObjectContainer Parent
+		{
+			get;
+		}
+		
+		/// <summary>
+		/// The topmost object in the display tree the object is part of.
+		/// </summary>
+		[Export("root")]
+		SPDisplayObject Root
+		{
+			get;
+		}
+		
+		/// <summary>
+		/// The stage the display object is connected to, or null if it is not connected to a stage.
+		/// </summary>
+		[Export("stage")]
+		SPStage Stage
+		{
+			get;
+		}
+		
+		/// <summary>
+		/// The transformation matrix of the object relative to its parent.
+		/// </summary>
+		[Export("transformationMatrix")]
+		SPMatrix TransformationMatrix
+		{
+			get;
+		}
+		
+		/// <summary>
+		/// The name of the display object (default: null). Used by display object containers.
+		/// </summary>
+		[Export("name", ArgumentSemantic.Copy)]
+		string Name
+		{
+			get;
+			set;
+		}
+				
+		#endregion
+		
+		#region Methods
+				
+		/// <summary>
+		/// Renders the display object with the help of a support object. 
+		/// </summary>
+		[Export("render:")]
+		void Render(SPRenderSupport support);
+		
+		/// <summary>
+		/// Removes the object from its parent, if it has one.
+		/// </summary>
+		[Export("removeFromParent")]
+		void RemoveFromParent();
+		
+		/// <summary>
+		/// Creates a matrix that represents the transformation from the local coordinate system to another.
+		/// </summary>
+		[Export("transformationMatrixToSpace:")]
+		SPMatrix TransformationMatrixToSpace(SPDisplayObject targetCoordinateSpace);
+
+		/// <summary>
+		/// Returns a rectangle that completely encloses the object as it appears in another coordinate system.
+		/// </summary>
+		[Export("boundsInSpace:")]
+		SPRectangle BoundsInSpace(SPDisplayObject targetCoordinateSpace);
+
+		/// <summary>
+		/// Transforms a point from the local coordinate system to global (stage) coordinates.
+		/// </summary>
+		[Export("localToGlobal:")]
+		SPPoint LocalToGlobal(SPPoint localPoint);
+		
+		/// <summary>
+		/// Transforms a point from global (stage) coordinates to the local coordinate system.
+		/// </summary>
+		[Export("globalToLocal:")]
+		SPPoint GlobalToLocal(SPPoint globalPoint);
+		
+		/// <summary>
+		/// Returns the object that is found topmost on a point in local coordinates, or null if the test fails.
+		/// </summary>
+		[Export("hitTestPoint:forTouch:")]
+		SPDisplayObject HitTestPoint(SPPoint localPoint, bool isTouch);
+		
+		/// <summary>
+		/// Dispatches an event on all children (recursively). The event must not bubble.
+		/// </summary>
+		[Export("broadcastEvent:")]
+		void BroadcastEvent(SPEvent event_);
+		
+		#endregion
 	}
 	#endregion
 	
@@ -63,7 +360,7 @@ namespace Sparrow
 	/// <summary>
 	/// Compares two display objects.
 	/// </summary>
-	public delegate int SPDisplayObjectComparator(SPDisplayObject obj1, SPDisplayObject obj2);
+	public delegate NSComparisonResult SPDisplayObjectComparator(SPDisplayObject obj1, SPDisplayObject obj2);
 	
 	/// <summary>
 	/// An SPDisplayObjectContainer represents a collection of display objects.
@@ -81,6 +378,7 @@ namespace Sparrow
 	/// </remarks>
 	[Abstract]
 	[BaseType (typeof(SPDisplayObject))]
+	[DisableDefaultCtor]
 	public interface SPDisplayObjectContainer
 	{
 		#region Properties
@@ -132,7 +430,7 @@ namespace Sparrow
 		/// Moves a child to a certain index. Children at and after the replaced position move up.
 		/// </summary>
 		[Export("setIndex:ofChild:")]
-		void SetIndex(int index, SPDisplayObject child);
+		void Move(int index, SPDisplayObject child);
 		
 		[Internal]
 		[Export("removeChild:")]
@@ -147,7 +445,7 @@ namespace Sparrow
 		/// <summary>
 		/// Removes all children from the container.
 		/// </summary>
-		[Export("removeAllChildren:")]
+		[Export("removeAllChildren")]
 		void Clear();
 		
 		/// <summary>
@@ -168,17 +466,63 @@ namespace Sparrow
 		[Export("sortChildren:")]
 		void Sort(SPDisplayObjectComparator comparator);
 		
-		/// <summary>
-		/// Dispatches an event on all children (recursively). The event must not bubble.
-		/// </summary>
-		[Export("broadcastEvent:")]
-		void BroadcastEvent(SPEvent event_);
+		// Already implemented by SPDisplayObject
+		// void BroadcastEvent(SPEvent event_);
 		
 		#endregion
 	}
 	#endregion
 	
 	#region SPQuad (TODO) 
+	
+	[BaseType(typeof(SPDisplayObject))]
+	[DisableDefaultCtor]
+	public interface SPQuad
+	{
+		#region Properties
+
+		/// Sets the colors of all vertices simultaneously. Returns the color of vertex '0'.
+		//@property (nonatomic, assign) uint color;
+		
+		#endregion
+		
+		#region Constructors
+
+		/// <summary>
+		/// Initializes a quad with a certain size and color. _Designated Initializer_.
+		/// </summary>
+		[Export("initWithWidth:height:color:")]
+		IntPtr Constructor(float width, float height, uint color);
+		
+		/// <summary>
+		/// Initializes a white quad with a certain size.
+		/// </summary>
+		[Export("initWithWidth:height:")]
+		IntPtr Constructor(float width, float height);
+		
+		#endregion
+		
+		#region Methods
+
+		/// Sets the color of a vertex.
+		//- (void)setColor:(uint)color ofVertex:(int)vertexID;
+		
+		/// Returns the color of a vertex.
+		//- (uint)colorOfVertex:(int)vertexID;
+		
+		/// Factory method.
+		//+ (SPQuad*)quadWithWidth:(float)width height:(float)height;
+		
+		/// Factory method.
+		//+ (SPQuad*)quadWithWidth:(float)width height:(float)height color:(uint)color;
+		
+		/// Factory method. Creates a 32x32 quad.
+		//+ (SPQuad*)quad;
+
+		#endregion
+		
+	}
+	
 	#endregion
 	
 	#region SPImage (TODO) 
@@ -216,6 +560,7 @@ namespace Sparrow
 	/// 
 	/// </remarks>
 	[BaseType (typeof(SPDisplayObjectContainer))]
+	[DisableDefaultCtor]
 	public interface SPStage
 	{
 		#region Static
@@ -277,7 +622,7 @@ namespace Sparrow
 		/// The requested number of frames per second. Must be a divisor of 60 (like 30, 20, 15, 12, 10, etc.).
 		/// The actual frame rate might be lower if there is too much to process.
 		/// </summary>
-		[Export("frameRate", ArgumentSemantic.Assign)]
+		[Export("frameRate")]
 		float FrameRate
 		{
 			get;
@@ -287,7 +632,7 @@ namespace Sparrow
 		/// <summary>
 		/// The background color of the stage. Default: black (0x000000).
 		/// </summary>
-		[Export("color", ArgumentSemantic.Assign)]
+		[Export("color")]
 		uint Color
 		{
 			get;
@@ -315,6 +660,12 @@ namespace Sparrow
 		#endregion
 		
 		#region Constructors
+		
+		/// <summary>
+		/// Initializes a fullscreen stage.
+		/// </summary>
+		[Export("init")]
+		IntPtr Constructor();
 		
 		/// <summary>
 		/// Initializes a stage with a certain size in points.
@@ -478,6 +829,13 @@ namespace Sparrow
 	#endregion
 	
 	#region SPRenderSupport (TODO) 
+	
+	[BaseType(typeof(NSObject))]
+	public interface SPRenderSupport
+	{
+		
+	}
+	
 	#endregion
 	
 	#region SPAudioEngine (TODO) 
