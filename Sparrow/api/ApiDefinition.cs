@@ -82,17 +82,6 @@ namespace Sparrow
 
 	#region SPEventDispatcher (DONE) 
 	
-	/// <summary>
-	/// The SPEventDispatcher class is the base for all classes that dispatch events.
- 	/// </summary>
-	/// <remarks>
-	/// The event mechanism is a key feature of Sparrow's architecture. Objects can communicate with 
-	/// each other over events.
-	/// 
-	/// An event dispatcher can dispatch events (objects of type SPEvent or one of its subclasses) 
-	/// to objects that have registered themselves as listeners. A string (the event type) is used to 
-	/// identify different events.
-	/// </remarks>
 	[Abstract]
 	[BaseType (typeof(NSObject))]
 	[DisableDefaultCtor]
@@ -776,36 +765,24 @@ namespace Sparrow
 		
 		#region Properties
 		
-		/// <summary>
-		/// A string that identifies the event.
-		/// </summary>
 		[Export("type")]
 		string EventType
 		{
 			get;
 		}
 		
-		/// <summary>
-		/// Indicates if event will bubble.
-		/// </summary>
 		[Export("bubbles")]
 		bool Bubbles
 		{
 			get;
 		}
 		
-		/// <summary>
-		/// The object that dispatched the event.
-		/// </summary>
 		[Export("target")]
 		SPEventDispatcher Target
 		{
 			get;
 		}
 		
-		/// <summary>
-		/// The object the event is currently bubbling at.
-		/// </summary>
 		[Export("currentTarget")]
 		SPEventDispatcher CurrentTarget
 		{
@@ -816,15 +793,9 @@ namespace Sparrow
 		
 		#region Constructors
 		
-		/// <summary>
-		/// Initializes an event object that can be passed to listeners. _Designated Initializer_.
-		/// </summary>
 		[Export("initWithType:bubbles:")]
 		IntPtr Constructor(string eventType, bool bubbles);
 		
-		/// <summary>
-		/// Initializes a non-bubbling event.
-		/// </summary>
 		[Export("initWithType:")]
 		IntPtr Constructor(string eventType);
 		
@@ -832,15 +803,9 @@ namespace Sparrow
 		
 		#region Methods
 		
-		/// <summary>
-		/// Prevents any other listeners from receiving the event.
-		/// </summary>
 		[Export("stopImmediatePropagation")]
 		void StopImmediatePropagation();
 		
-		/// <summary>
-		/// Prevents listeners at the next bubble stage from receiving the event.
-		/// </summary>
 		[Export("stopPropagation")]
 		void StopPropagation();		
 		

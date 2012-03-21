@@ -2,40 +2,25 @@ using System;
 
 namespace Sparrow
 {
-	/// <remarks>
-	/// The SPEventArgs class contains the event data.
-	/// </remarks>
 	public interface SPEventArgs
 	{
-		/// <summary>
-		/// A string that identifies the event.
-		/// </summary>
 		string EventType
 		{
 			get;
 		}
 		
-		/// <summary>
-		/// Indicates if event will bubble.
-		/// </summary>
 		bool Bubbles
 		{
 			get;
 			set;
 		}
 		
-		/// <summary>
-		/// Prevents any other listeners from receiving the event.
-		/// </summary>
 		bool Cancel
 		{
 			get;
 			set;
 		}
 		
-		/// <summary>
-		/// The object that dispatched the event.
-		/// </summary>
 		SPEventDispatcher Origin
 		{
 			get;

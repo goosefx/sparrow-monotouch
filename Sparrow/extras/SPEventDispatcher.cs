@@ -6,6 +6,7 @@ using MonoTouch.ObjCRuntime;
 
 namespace Sparrow
 {
+	// Internal
 	[Register("__SPEventDispatcherInvocationTarget")]
 	public class SPEventDispatcherInvocationTarget : NSObject
 	{
@@ -66,17 +67,11 @@ namespace Sparrow
 			return false;
 		}
 		
-		/// <summary>
-		/// Registers an event listener without retaining it (recommended).
-		/// </summary>
 		public void AddEventListener(string eventType, SPEventHandler eventHandler)
 		{
 			AddEventListener(eventType, eventHandler, false);
 		}
 
-		/// <summary>
-		/// Registers an event listener. 
-		/// </summary>
 		public void AddEventListener(string eventType, SPEventHandler eventHandler, bool retain)
 		{
 			SPEventDispatcherInvocationTarget target = null;
@@ -110,9 +105,6 @@ namespace Sparrow
 			}
 		}
 		
-		/// <summary>
-		/// Removes an event listener.
-		/// </summary>
 		public bool RemoveEventListener(string eventType, SPEventHandler eventHandler)
 		{
 			SPEventDispatcherInvocationTarget target = null;
@@ -145,9 +137,7 @@ namespace Sparrow
 			return false;
 		}
 		
-		/// <summary>
-		/// For Testing: Gets the (managed) invocation list.
-		/// </summary>
+		// For Testing
 		public SPEventDispatcherInvocationTarget[] GetInvocationList()
 		{
 			if (this.invocationTargets == null)
