@@ -70,6 +70,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Tests\SPDisplayObjectContainerTests.cs" />
     <Compile Include="Tests\SPDisplayObjectTests.cs" />
+    <Compile Include="Tests\SPEventDispatcherTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -9,7 +9,7 @@ namespace UnitTests
     public class SPDisplayObjectTests
 	{
 		[Test]
-		public void FloatProperties()
+		public void CoordinantesAndAlpha()
 		{
 			#region ...
 			
@@ -55,7 +55,7 @@ namespace UnitTests
 		}
 		
 		[Test]
-		public void BoolProperties()
+		public void VisibleAndTouchable()
 		{
 			#region ...
 			
@@ -80,7 +80,7 @@ namespace UnitTests
 		
 		[Test]
 		[Ignore ("SPRectangle not implemented yet!")]
-        public void BoundsProperty()
+        public void Bounds()
 		{
 			#region ...
 			
@@ -88,7 +88,7 @@ namespace UnitTests
 		}
 		
 		[Test]
-		public void ParentProperty()
+		public void Parent()
 		{
 			#region ...
 			
@@ -105,7 +105,7 @@ namespace UnitTests
 		}
 		
 		[Test]
-		public void RootProperty()
+		public void Root()
 		{
 			#region ...
 			
@@ -143,7 +143,7 @@ namespace UnitTests
 		
 		[Test]
 		[Ignore ("SPMatrix not implemented yet!")]
-		public void TransformationMatrixProperty()
+		public void TransformationMatrix()
 		{
 			#region ...
 			
@@ -151,7 +151,7 @@ namespace UnitTests
 		}
 		
 		[Test]
-		public void NameProperty()
+		public void Name()
 		{
 			#region ...
 			

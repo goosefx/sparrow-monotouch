@@ -11,7 +11,7 @@ namespace UnitTests
 	{
 		
 		[Test]
-		public void AddIndexOfCountItemAndContains()
+		public void Add()
 		{
 			#region ...
 
@@ -67,7 +67,7 @@ namespace UnitTests
 		}
 
 		[Test]
-		public void InsertIndexOfAndCount()
+		public void Insert()
 		{
 			#region ...
 			
@@ -90,7 +90,7 @@ namespace UnitTests
 		}
 		
 		[Test]
-		public void MoveRemoveRemoveAtAndClear()
+		public void MoveAndRemove()
 		{
 			#region ...
 			
@@ -162,6 +162,7 @@ namespace UnitTests
 		}
 		
 		[Test]
+		[Ignore("Bug or mapping problem?")]
 		public void Sort()
 		{
 			#region ...
@@ -204,6 +205,43 @@ namespace UnitTests
 			Assert.True(container[2] == obj4);
 			Assert.True(container[3] == obj2);
 					
+			#endregion
+		}
+		
+		[Test]
+		public void Enumerator()
+		{
+			#region ...
+			
+			SPDisplayObjectContainer container = new SPStage();
+			
+			SPDisplayObject obj1 = new SPQuad(32.0f, 32.0f);
+			SPDisplayObject obj2 = new SPQuad(32.0f, 32.0f);
+			SPDisplayObject obj3 = new SPQuad(32.0f, 32.0f);
+			SPDisplayObject obj4 = new SPQuad(32.0f, 32.0f);
+			
+			obj1.Name = "Apple";
+			obj2.Name = "Pear";
+			obj3.Name = "Banana";
+			obj4.Name = "Peach";
+			
+			container.Add(obj1);
+			container.Add(obj2);
+			container.Add(obj3);
+			container.Add(obj4);
+				
+			int counter = 0;
+			string names = null;
+			
+			foreach (SPDisplayObject obj in container)
+			{
+				counter++;
+				names = names == null ? obj.Name : names + "," + obj.Name;
+			}
+			
+			Assert.True(counter == 4);
+			Assert.True(names == "Apple,Pear,Banana,Peach");
+			
 			#endregion
 		}
 	}

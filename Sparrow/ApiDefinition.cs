@@ -80,16 +80,55 @@ namespace Sparrow
 	#region SPNSExtensions (TODO) 
 	#endregion
 
-	#region SPEventDispatcher (TODO) 
+	#region SPEventDispatcher (DONE) 
+	
+	/// <summary>
+	/// The SPEventDispatcher class is the base for all classes that dispatch events.
+ 	/// </summary>
+	/// <remarks>
+	/// The event mechanism is a key feature of Sparrow's architecture. Objects can communicate with 
+	/// each other over events.
+	/// 
+	/// An event dispatcher can dispatch events (objects of type SPEvent or one of its subclasses) 
+	/// to objects that have registered themselves as listeners. A string (the event type) is used to 
+	/// identify different events.
+	/// </remarks>
 	[Abstract]
 	[BaseType (typeof(NSObject))]
+	[DisableDefaultCtor]
 	public interface SPEventDispatcher
 	{
+		#region Methods
 		
+		[Internal, Export("addEventListener:atObject:forType:retainObject:")]
+		void _AddEventListener(Selector listener, NSObject object_, string eventType, bool retain);
+		
+		[Internal, Export("addEventListener:atObject:forType:")]
+		void _AddEventListener(Selector listener, NSObject object_, string eventType);
+		
+		[Internal, Export("removeEventListener:atObject:forType:")]
+		void _RemoveEventListener(Selector listener, NSObject object_, string eventType);
+		
+		// (not required) Removes all event listeners at an object that have a certain type.
+		//- (void)removeEventListenersAtObject:(id)object forType:(NSString*)eventType;
+		
+		/// <summary>
+		/// Dispatches an event to all objects that have registered for events of the same type.
+		/// </summary>
+		[Export("dispatchEvent:")]
+		void DispatchEvent(SPEvent event_);
+		
+		/// <summary>
+		/// Returns if there are listeners registered for a certain event type.
+		/// </summary>
+		[Export("hasEventListenerForType:")]
+		void HasEventListener(string eventType);
+		
+		#endregion
 	}
 	#endregion
 	
-	#region SPDisplayObject (TODO) 
+	#region SPDisplayObject (DONE) 
 	
 	/// <summary>
 	/// The SPDisplayObject class is the base class for all objects that are rendered on the screen.
@@ -355,12 +394,12 @@ namespace Sparrow
 	}
 	#endregion
 	
-	#region SPDisplayObjectContainer (DONE)
+	#region SPDisplayObjectContainer (DONE, Sort not working!!!)
 	
 	/// <summary>
 	/// Compares two display objects.
 	/// </summary>
-	public delegate NSComparisonResult SPDisplayObjectComparator(SPDisplayObject obj1, SPDisplayObject obj2);
+	public delegate int SPDisplayObjectComparator(SPDisplayObject obj1, SPDisplayObject obj2);
 	
 	/// <summary>
 	/// An SPDisplayObjectContainer represents a collection of display objects.
@@ -402,9 +441,8 @@ namespace Sparrow
 		[Export("addChild:")]
 		void Add(SPDisplayObject child);
 		
-		[Internal]
-		[Export("addChild:atIndex:")]
-		void InternalAddAtIndex(SPDisplayObject child, int index);
+		[Internal, Export("addChild:atIndex:")]
+		void _AddAtIndex(SPDisplayObject child, int index);
 		
 		/// <summary>
 		/// Determines if a certain object is a child of the container (recursively).
@@ -412,13 +450,11 @@ namespace Sparrow
 		[Export("containsChild:")]
 		bool Contains(SPDisplayObject child);
 		
-		[Internal]
-		[Export("childAtIndex:")]
-		SPDisplayObject InternalChildAtIndex(int index);
+		[Internal, Export("childAtIndex:")]
+		SPDisplayObject _ChildAtIndex(int index);
 		
-		[Internal]
-		[Export("childByName:")]
-		SPDisplayObject InternalChildByName(string name);
+		[Internal, Export("childByName:")]
+		SPDisplayObject _ChildByName(string name);
 		
 		/// <summary>
 		/// Returns the index of a child within the container.
@@ -432,9 +468,8 @@ namespace Sparrow
 		[Export("setIndex:ofChild:")]
 		void Move(int index, SPDisplayObject child);
 		
-		[Internal]
-		[Export("removeChild:")]
-		void InternalRemove(SPDisplayObject child);
+		[Internal, Export("removeChild:")]
+		void _Remove(SPDisplayObject child);
 		
 		/// <summary>
 		/// Removes a child at a certain index. Children above the child will move down.
@@ -465,9 +500,6 @@ namespace Sparrow
 		/// </summary>
 		[Export("sortChildren:")]
 		void Sort(SPDisplayObjectComparator comparator);
-		
-		// Already implemented by SPDisplayObject
-		// void BroadcastEvent(SPEvent event_);
 		
 		#endregion
 	}
@@ -718,10 +750,107 @@ namespace Sparrow
 	#region SPTextureAtlas (TODO) 
 	#endregion
 	
-	#region SPEvent (TODO)
+	#region SPEvent (DONE*)
+	
+	/// <summary>
+	/// The SPEvent class contains data that describes an event.
+ 	/// </summary>
+ 	/// <remarks>
+ 	/// SPEventDispatcher create instances of this class and send them to registered listeners. An event
+	/// contains information that characterizes an event, most importantly the event type and if the event 
+	/// bubbles. The target of an event is the object that dispatched it.
+ 	/// </remarks>
 	[BaseType(typeof(NSObject))]
+	[DisableDefaultCtor]
 	public interface SPEvent
 	{
+		#region Static (TODO)
+		
+		/// Factory method.
+		//+ (SPEvent*)eventWithType:(NSString*)type bubbles:(BOOL)bubbles;
+		
+		/// Factory method.
+		//+ (SPEvent*)eventWithType:(NSString*)type;
+
+		#endregion
+		
+		#region Properties
+		
+		/// <summary>
+		/// A string that identifies the event.
+		/// </summary>
+		[Export("type")]
+		string EventType
+		{
+			get;
+		}
+		
+		/// <summary>
+		/// Indicates if event will bubble.
+		/// </summary>
+		[Export("bubbles")]
+		bool Bubbles
+		{
+			get;
+		}
+		
+		/// <summary>
+		/// The object that dispatched the event.
+		/// </summary>
+		[Export("target")]
+		SPEventDispatcher Target
+		{
+			get;
+		}
+		
+		/// <summary>
+		/// The object the event is currently bubbling at.
+		/// </summary>
+		[Export("currentTarget")]
+		SPEventDispatcher CurrentTarget
+		{
+			get;
+		}
+				
+		#endregion
+		
+		#region Constructors
+		
+		/// <summary>
+		/// Initializes an event object that can be passed to listeners. _Designated Initializer_.
+		/// </summary>
+		[Export("initWithType:bubbles:")]
+		IntPtr Constructor(string eventType, bool bubbles);
+		
+		/// <summary>
+		/// Initializes a non-bubbling event.
+		/// </summary>
+		[Export("initWithType:")]
+		IntPtr Constructor(string eventType);
+		
+		#endregion
+		
+		#region Methods
+		
+		/// <summary>
+		/// Prevents any other listeners from receiving the event.
+		/// </summary>
+		[Export("stopImmediatePropagation")]
+		void StopImmediatePropagation();
+		
+		/// <summary>
+		/// Prevents listeners at the next bubble stage from receiving the event.
+		/// </summary>
+		[Export("stopPropagation")]
+		void StopPropagation();		
+		
+		[Internal, Export("stopsImmediatePropagation")]
+		bool _StopsImmediatePropagation();
+		
+		[Internal, Export("stopsPropagation")]
+		bool _StopsPropagation();
+
+		#endregion
 		
 	}
 	#endregion

@@ -18,10 +18,10 @@ namespace Sparrow
 		/// </summary>
 		public SPDisplayObject this[int index]
 		{
-			get { return this.InternalChildAtIndex(index); }
+			get { return this._ChildAtIndex(index); }
 			set
 			{ 
-				this.InternalAddAtIndex(value, index);
+				this._AddAtIndex(value, index);
 				
 				int nextIndex = index + 1;
 				
@@ -37,7 +37,7 @@ namespace Sparrow
 		/// </summary>
 		public SPDisplayObject this[string name]
 		{
-			get { return this.InternalChildByName(name); }
+			get { return this._ChildByName(name); }
 		}
 
 		/// <summary>
@@ -45,7 +45,7 @@ namespace Sparrow
 		/// </summary>
 		public void Insert(int index, SPDisplayObject child)
 		{
-			this.InternalAddAtIndex(child, index);
+			this._AddAtIndex(child, index);
 		}
 		
 		/// <summary>
@@ -57,7 +57,7 @@ namespace Sparrow
 			{
 				return false;
 			}
-			this.InternalRemove(child);
+			this._Remove(child);
 			return true;
 		}
 		
@@ -69,7 +69,7 @@ namespace Sparrow
 			int count = this.Count;
 			for (int i = 0; i < count; i++)
 			{
-				array[arrayIndex + i] = this.InternalChildAtIndex(i);
+				array[arrayIndex + i] = this._ChildAtIndex(i);
 			}
 		}
 
@@ -79,7 +79,7 @@ namespace Sparrow
 			
 			for (int i = 0; i < num; i++)
 			{
-				SPDisplayObject child = this.InternalChildAtIndex(i);
+				SPDisplayObject child = this._ChildAtIndex(i);
 				yield return child;
 			}
 		}

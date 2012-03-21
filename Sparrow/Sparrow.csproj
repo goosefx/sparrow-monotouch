@@ -50,6 +50,9 @@
     <Compile Include="libSparrow-release.linkwith.cs">
       <DependentUpon>libSparrow-release.a</DependentUpon>
     </Compile>
+    <Compile Include="Extras\SPEventDispatcher.cs" />
+    <Compile Include="Extras\SPDisplayObject.cs" />
+    <Compile Include="Extras\SPEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingNativeLibrary Include="libSparrow-debug.a" />
