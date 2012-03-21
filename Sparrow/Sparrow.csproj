@@ -46,10 +46,10 @@
     <Compile Include="libSparrow-debug.linkwith.cs">
       <DependentUpon>libSparrow-debug.a</DependentUpon>
     </Compile>
-    <Compile Include="Extras\SPDisplayObjectContainer.cs" />
     <Compile Include="libSparrow-release.linkwith.cs">
       <DependentUpon>libSparrow-release.a</DependentUpon>
     </Compile>
+    <Compile Include="Extras\SPDisplayObjectContainer.cs" />
     <Compile Include="Extras\SPEventDispatcher.cs" />
     <Compile Include="Extras\SPDisplayObject.cs" />
     <Compile Include="Extras\SPEvent.cs" />

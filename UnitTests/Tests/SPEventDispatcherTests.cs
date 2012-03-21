@@ -36,9 +36,13 @@ namespace UnitTests
 			Assert.True(moved == 2);
 			Assert.True(touched == 1);
 			
-			// can't add same handler again, this will be ignored
+			// should be ignored
 			dispatcher.AddEventListener("touched", touchedHandler);
 			
+			Assert.True(dispatcher.GetInvocationList().Length == 2);
+			Assert.True(dispatcher.GetInvocationList()[0].GetEventTypes().Length == 1);
+			Assert.True(dispatcher.GetInvocationList()[1].GetEventTypes().Length == 1);
+
 			dispatcher.DispatchEvent(new SPEvent("touched"));
 			
 			Assert.True(touched == 2);
@@ -49,19 +53,9 @@ namespace UnitTests
 			
 			Assert.True(touched == 2);
 			
-			dispatcher.RemoveEventListener("moved", touchedHandler);
+			dispatcher.RemoveEventListener("moved", movedHandler);
 			
-			// DUMMY TEST
-			SPEventArgs xxx = new SPEvent("xxx", true);
-			
-			Assert.False(xxx.Cancel);
-			Assert.True(xxx.Bubbles);
-			
-			xxx.Bubbles = false;
-			xxx.Cancel = true;
-			
-			Assert.True(xxx.Cancel);
-			Assert.False(xxx.Bubbles);
+			Assert.True(dispatcher.GetInvocationList() == null);
 			
 			#endregion
 		}
