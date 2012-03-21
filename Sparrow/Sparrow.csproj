@@ -36,10 +36,10 @@
     <Reference Include="monotouch" />
   </ItemGroup>
   <ItemGroup>
-    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+    <ObjcBindingApiDefinition Include="api\ApiDefinition.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+    <ObjcBindingCoreSource Include="api\StructsAndEnums.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Xamarin.ObjcBinding.CSharp.targets" />
   <ItemGroup>
@@ -59,8 +59,9 @@
     <ObjcBindingNativeLibrary Include="libSparrow-release.a" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="api\" />
+    <Folder Include="extras\" />
     <Folder Include="objc_header\" />
-    <Folder Include="Extras\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="objc_header\SPALSound.h" />
