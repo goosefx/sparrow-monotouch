@@ -40,7 +40,7 @@ Prevents listeners at the next bubble stage from receiving the event. As an even
 
 Thus, Sparrow native events integrate better into C#, we have used a little trick. SPEventArgs (an interface) decorates an SPEvent object so it fits better into the .NET universe.
 
-** Example: **
+**Example:**
 
 If a [SPDisplayContainer](SPDisplayContainer.md) dispatch the event `added` for a recent added child you can listen to the event like this:
 
@@ -62,6 +62,8 @@ Furthermore, SPEventArgs mimics the functionality of `System.ComponentModel.Canc
 	
 Represents the method that will handle an SPEvent.
 
-** See Also: **
+---	
+
+**See Also:**
  
  - [SPEventDispatcher](SPEventDispatcher.md)

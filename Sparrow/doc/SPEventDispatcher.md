@@ -9,7 +9,7 @@ The event mechanism is a key feature of Sparrow's architecture. Objects can comm
 
 An event dispatcher can dispatch events (objects of type [SPEvent](SPEvent.md) or one of its subclasses) to objects that have registered themselves as listeners. A string (the event type) is used to identify different events.
 
-** Here is a sample: **
+**Here is a sample:**
  
 	// dispatching an event
 	this.DispatchEvent(new SPEvent("eventType"));
@@ -35,7 +35,7 @@ Removes an event listener.
 
 ---	
  
-** See Also: **
+**See Also:**
  
  - [SPEvent](SPEvent.md)
  - [SPDisplayObject](SPDisplayObject.md)
