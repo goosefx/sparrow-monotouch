@@ -14,7 +14,6 @@ namespace Sparrow
 		
 		internal WeakReference WeakEventHandler;
 		internal List<string> EventTypes = new List<string>();
-		internal bool InvalidTarget = false;
 		
 		internal SPEventDispatcherInvocationTarget(Delegate eventHandler)
 		{
@@ -27,10 +26,6 @@ namespace Sparrow
 			if (this.WeakEventHandler.IsAlive)
 			{
 				((Delegate)this.WeakEventHandler.Target).DynamicInvoke(new object[] { e.CurrentTarget, e }); 
-			}
-			else
-			{
-				this.InvalidTarget = true;
 			}
 		}
 		
