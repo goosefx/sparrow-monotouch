@@ -162,7 +162,7 @@ namespace UnitTests
 		}
 		
 		[Test]
-		[Ignore("Bug or mapping problem?")]
+		[Ignore("MonoTouch Bug #3995")]
 		public void Sort()
 		{
 			#region ...
