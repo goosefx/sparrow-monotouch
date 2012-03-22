@@ -25,11 +25,11 @@ As [SPDisplayObject](SPDisplayObject.md), the base object of all rendered object
 
 ### Methods
 
-	public void AddEventListener(string eventType, SPEventHandler eventHandler[, bool retain = false])
+	public void AddEventListener(string eventType, Delegate eventHandler[, bool retain = false])
 
 Registers an event listener. It is recommended to call this method without `retain`.
 
-	public bool RemoveEventListener(string eventType, SPEventHandler eventHandler)
+	public bool RemoveEventListener(string eventType, Delegate eventHandler)
 
 Removes an event listener.
 
