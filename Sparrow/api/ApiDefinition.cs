@@ -80,7 +80,7 @@ namespace Sparrow
 	#region SPNSExtensions (TODO) 
 	#endregion
 
-	#region SPEventDispatcher (DONE+DOC) 
+	#region SPEventDispatcher (DONE) 
 	
 	[Abstract]
 	[BaseType (typeof(NSObject))]
@@ -117,7 +117,7 @@ namespace Sparrow
 	}
 	#endregion
 	
-	#region SPDisplayObject (DONE+DOC) 
+	#region SPDisplayObject (DONE) 
 	
 	[Abstract]
 	[BaseType (typeof(SPEventDispatcher))]
@@ -281,25 +281,8 @@ namespace Sparrow
 	
 	#region SPDisplayObjectContainer (DONE)
 	
-	/// <summary>
-	/// Compares two display objects.
-	/// </summary>
 	public delegate int SPDisplayObjectComparator(SPDisplayObject obj1, SPDisplayObject obj2);
 	
-	/// <summary>
-	/// An SPDisplayObjectContainer represents a collection of display objects.
- 	/// </summary>
- 	/// <remarks>
- 	/// It is the base class of all display objects that act as a container for other objects. By 
- 	/// maintaining an ordered list of children, it defines the back-to-front positioning of the children
- 	/// within the display tree.
- 	/// 
- 	/// A container does not have size in itself. The width and height properties represent the extents
- 	/// of its children. Changing those properties will scale all children accordingly.
- 	/// 
- 	/// As this is an abstract class, you can't instantiate it directly, but have to 
-	/// use a subclass instead. The most lightweight container class is SPSprite.
-	/// </remarks>
 	[Abstract]
 	[BaseType (typeof(SPDisplayObject))]
 	[DisableDefaultCtor]
@@ -307,9 +290,6 @@ namespace Sparrow
 	{
 		#region Properties
 		
-		/// <summary>
-		/// The number of children of this container.
-		/// </summary>
 		[Export("numChildren")]
 		int Count
 		{
@@ -320,18 +300,12 @@ namespace Sparrow
 
 		#region Methods
 		
-		/// <summary>
-		/// Adds a child to the container. It will be at the topmost position.
-		/// </summary>
 		[Export("addChild:")]
 		void Add(SPDisplayObject child);
 		
 		[Internal, Export("addChild:atIndex:")]
 		void _AddAtIndex(SPDisplayObject child, int index);
 		
-		/// <summary>
-		/// Determines if a certain object is a child of the container (recursively).
-		/// </summary>
 		[Export("containsChild:")]
 		bool Contains(SPDisplayObject child);
 		
@@ -341,48 +315,27 @@ namespace Sparrow
 		[Internal, Export("childByName:")]
 		SPDisplayObject _ChildByName(string name);
 		
-		/// <summary>
-		/// Returns the index of a child within the container.
-		/// </summary>
 		[Export("childIndex:")]
 		int IndexOf(SPDisplayObject child);
 		
-		/// <summary>
-		/// Moves a child to a certain index. Children at and after the replaced position move up.
-		/// </summary>
 		[Export("setIndex:ofChild:")]
 		void Move(int index, SPDisplayObject child);
 		
 		[Internal, Export("removeChild:")]
 		void _Remove(SPDisplayObject child);
 		
-		/// <summary>
-		/// Removes a child at a certain index. Children above the child will move down.
-		/// </summary>
 		[Export("removeChildAtIndex:")]
 		void RemoveAt(int index);
 		
-		/// <summary>
-		/// Removes all children from the container.
-		/// </summary>
 		[Export("removeAllChildren")]
 		void Clear();
 		
-		/// <summary>
-		/// Swaps the indexes of two children.
-		/// </summary>
 		[Export("swapChild:withChild:")]
 		void Swap(SPDisplayObject child1, SPDisplayObject child2);
 		
-		/// <summary>
-		/// Swaps the indexes of two children.
-		/// </summary>
 		[Export("swapChildAtIndex:withChildAtIndex:")]
 		void Swap(int index1, int index2);
 		
-		/// <summary>
-		/// Sorts the children using the given comparison. Only available in iOS 4 and above!
-		/// </summary>
 		[Export("sortChildren:")]
 		void Sort(SPDisplayObjectComparator comparator);
 		
@@ -390,7 +343,7 @@ namespace Sparrow
 	}
 	#endregion
 	
-	#region SPQuad (TODO) 
+	#region SPQuad (DONE) 
 	
 	[BaseType(typeof(SPDisplayObject))]
 	[DisableDefaultCtor]
@@ -398,22 +351,20 @@ namespace Sparrow
 	{
 		#region Properties
 
-		/// Sets the colors of all vertices simultaneously. Returns the color of vertex '0'.
-		//@property (nonatomic, assign) uint color;
+		[Export("color")]
+		uint Color
+		{
+			get;
+			set;
+		}
 		
 		#endregion
 		
 		#region Constructors
 
-		/// <summary>
-		/// Initializes a quad with a certain size and color. _Designated Initializer_.
-		/// </summary>
 		[Export("initWithWidth:height:color:")]
 		IntPtr Constructor(float width, float height, uint color);
 		
-		/// <summary>
-		/// Initializes a white quad with a certain size.
-		/// </summary>
 		[Export("initWithWidth:height:")]
 		IntPtr Constructor(float width, float height);
 		
@@ -421,20 +372,11 @@ namespace Sparrow
 		
 		#region Methods
 
-		/// Sets the color of a vertex.
-		//- (void)setColor:(uint)color ofVertex:(int)vertexID;
+		[Export("setColor:ofVertex:")]
+		void SetColor(uint color, int vertexID);
 		
-		/// Returns the color of a vertex.
-		//- (uint)colorOfVertex:(int)vertexID;
-		
-		/// Factory method.
-		//+ (SPQuad*)quadWithWidth:(float)width height:(float)height;
-		
-		/// Factory method.
-		//+ (SPQuad*)quadWithWidth:(float)width height:(float)height color:(uint)color;
-		
-		/// Factory method. Creates a 32x32 quad.
-		//+ (SPQuad*)quad;
+		[Export("colorOfVertex:")]
+		uint GetColor(int vertexID);
 
 		#endregion
 		

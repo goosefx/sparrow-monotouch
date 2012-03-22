@@ -10,9 +10,6 @@ namespace Sparrow
 			get { return false; }
 		}
 		
-		/// <summary>
-		/// Gets or sets a child object at a certain index.
-		/// </summary>
 		public SPDisplayObject this[int index]
 		{
 			get { return this._ChildAtIndex(index); }
@@ -29,25 +26,16 @@ namespace Sparrow
 			}
 		}
 
-		/// <summary>
-		/// Returns a child object with a certain name (non-recursively).
-		/// </summary>
 		public SPDisplayObject this[string name]
 		{
 			get { return this._ChildByName(name); }
 		}
 
-		/// <summary>
-		/// Adds a child to the container at a certain index.
-		/// </summary>
 		public void Insert(int index, SPDisplayObject child)
 		{
 			this._AddAtIndex(child, index);
 		}
 		
-		/// <summary>
-		/// Removes a child from the container. If the object is not a child, nothing happens.
-		/// </summary>
 		public bool Remove(SPDisplayObject child)
 		{
 			if (!this.Contains(child))
@@ -58,9 +46,6 @@ namespace Sparrow
 			return true;
 		}
 		
-		/// <summary>
-		/// Copies all children to the given array starting at the specified index.
-		/// </summary>
 		public void CopyTo(SPDisplayObject[] array, int arrayIndex)
 		{
 			int count = this.Count;

@@ -13,6 +13,16 @@ A display object has properties that define its position in relation to its pare
 
 Every display object may be the target of touch events. If you don't want an object to be touchable, you can disable the `Touchable` property. When it's disabled, neither the object nor its children will receive any more touch events.
 
+**Points vs. Pixels**
+ 
+All sizes and distances are measured in points. What this means in pixels depends on the `ContentScaleFactor` of the [stage](SPStage.md). On a low resolution device (up to iPhone 3GS), one point is one pixel. On devices with a retina display, one point may be 2 pixels.
+
+**Transforming coordinates**
+ 
+Within the display tree, each object has its own local coordinate system. If you rotate a container, you rotate that coordinate system - and thus all the children of the container.
+ 
+Sometimes you need to know where a certain point lies relative to another coordinate system. That's the purpose of the method `TransformationMatrixToSpace`. It will create a [matrix](SPMatrix.md) that represents the transformation of a point in one coordinate system to another. 
+
 **Subclassing SPDisplayObject**
  
 As SPDisplayObject is an abstract class, you can't instantiate it directly, but have to use one of its subclasses instead. There are already a lot of them available, and most of the time they will suffice. 
@@ -45,16 +55,6 @@ You will need to implement the following methods when you subclass SPDisplayObje
  - `Stage` : The [stage](SPStage.md) the display object is connected to, or null if it is not connected to a stage. *(readonly)*
  - `TransformationMatrix` : The transformation matrix of the object relative to its parent. *(readonly)*
  
-**Points vs. Pixels**
- 
-All sizes and distances are measured in points. What this means in pixels depends on the `ContentScaleFactor` of the [stage](SPStage.md). On a low resolution device (up to iPhone 3GS), one point is one pixel. On devices with a retina display, one point may be 2 pixels.
-
-**Transforming coordinates**
- 
-Within the display tree, each object has its own local coordinate system. If you rotate a container, you rotate that coordinate system - and thus all the children of the container.
- 
-Sometimes you need to know where a certain point lies relative to another coordinate system. That's the purpose of the method `TransformationMatrixToSpace`. It will create a [matrix](SPMatrix.md) that represents the transformation of a point in one coordinate system to another. 
-
 ## Events
 
  - `Added` : The object was added to a parent. 

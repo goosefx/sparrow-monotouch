@@ -22,7 +22,7 @@ Furthermore, the event class contains methods that can stop the event from being
 
 ## Constructors
 
-	SPEvent(string eventType[, bool bubbles = false])
+	new SPEvent(string eventType[, bool bubbles = false])
 
 ## Methods
 
