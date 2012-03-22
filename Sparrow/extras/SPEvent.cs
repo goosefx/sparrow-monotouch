@@ -2,6 +2,16 @@ using System;
 
 namespace Sparrow
 {
+	public static class SPEventType
+	{
+		public const string Added = "added";
+		public const string AddedToStage = "addedToStage";
+		public const string Removed = "removed";
+		public const string RemovedFromStage = "removedFromStage";
+		public const string Touch = "touch";
+		public const string EnterFrame = "enterFrame";
+	}
+	
 	public interface SPEventArgs
 	{
 		string EventType

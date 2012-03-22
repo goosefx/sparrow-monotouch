@@ -12,31 +12,39 @@ namespace Sparrow
 	{
 		public static readonly Selector InvokeSelector = new Selector("invoke:");
 		
-		internal SPEventHandler EventHandler;
+		internal WeakReference WeakEventHandler;
 		internal List<string> EventTypes = new List<string>();
+		internal bool InvalidTarget = false;
 		
-		internal SPEventDispatcherInvocationTarget(SPEventHandler eventHandler)
+		internal SPEventDispatcherInvocationTarget(Delegate eventHandler)
 		{
-			this.EventHandler = eventHandler;
+			this.WeakEventHandler = new WeakReference(eventHandler);
 		}
 		
 		[Export("invoke:"), Preserve(Conditional = true)]
 		internal void Invoke(SPEvent e)
 		{
-			this.EventHandler(e.CurrentTarget, (SPEventArgs)e); 
+			if (this.WeakEventHandler.IsAlive)
+			{
+				((Delegate)this.WeakEventHandler.Target).DynamicInvoke(new object[] { e.CurrentTarget, e }); 
+			}
+			else
+			{
+				this.InvalidTarget = true;
+			}
 		}
 		
-		/// <summary>
-		/// For Testing: Gets the event handler.
-		/// </summary>
-		public SPEventHandler GetEventHandler()
+		/// For Testing
+		public Delegate GetEventHandler()
 		{
-			return this.EventHandler;
+			if (this.WeakEventHandler.IsAlive)
+			{
+				return (Delegate)this.WeakEventHandler.Target;
+			}
+			return null;
 		}
 		
-		/// <summary>
-		/// For Testing: Gets the event types.
-		/// </summary>
+		// For Testing
 		public string[] GetEventTypes()
 		{
 			return this.EventTypes.ToArray();
@@ -44,35 +52,62 @@ namespace Sparrow
 	}
 	
 	public delegate void SPEventHandler(SPEventDispatcher source, SPEventArgs e);
-	
+		
 	public partial class SPEventDispatcher
 	{
 		private List<SPEventDispatcherInvocationTarget> invocationTargets = null;
 		
-		private bool TryGetInvocationTarget(SPEventHandler eventHandler, out SPEventDispatcherInvocationTarget target)
+		private bool TryGetInvocationTarget(Delegate eventHandler, out SPEventDispatcherInvocationTarget target)
 		{
+			List<SPEventDispatcherInvocationTarget> invalidTargets = null;
+			bool result = false;
+			target = null;
+			
 			if (this.invocationTargets != null)
 			{
 				foreach (SPEventDispatcherInvocationTarget item in this.invocationTargets)
 				{
-					if (item.EventHandler == eventHandler)
+					if (!item.WeakEventHandler.IsAlive)
+					{
+						if (invalidTargets == null)
+						{
+							invalidTargets = new List<SPEventDispatcherInvocationTarget>(4);
+						}
+						
+						invalidTargets.Add(item);
+					}
+					else if (((Delegate)item.WeakEventHandler.Target) == eventHandler)
 					{
 						target = item;
-						return true;
+						result = true;
+						
+						break;
 					}
 				}
 			}
 			
-			target = null;
-			return false;
+			if (invalidTargets != null)
+			{
+				foreach (SPEventDispatcherInvocationTarget invalidTarget in invalidTargets)
+				{
+					this.invocationTargets.Remove(invalidTarget);
+					
+					foreach (string eventType in invalidTarget.EventTypes)
+					{
+						this._RemoveEventListener(SPEventDispatcherInvocationTarget.InvokeSelector,
+					                              invalidTarget, eventType);
+					}
+				}
+			}
+			return result;
 		}
 		
-		public void AddEventListener(string eventType, SPEventHandler eventHandler)
+		public void AddEventListener(string eventType, Delegate eventHandler)
 		{
 			AddEventListener(eventType, eventHandler, false);
 		}
 
-		public void AddEventListener(string eventType, SPEventHandler eventHandler, bool retain)
+		public void AddEventListener(string eventType, Delegate eventHandler, bool retain)
 		{
 			SPEventDispatcherInvocationTarget target = null;
 			
@@ -105,7 +140,7 @@ namespace Sparrow
 			}
 		}
 		
-		public bool RemoveEventListener(string eventType, SPEventHandler eventHandler)
+		public bool RemoveEventListener(string eventType, Delegate eventHandler)
 		{
 			SPEventDispatcherInvocationTarget target = null;
 			
@@ -121,8 +156,6 @@ namespace Sparrow
 					if (target.EventTypes.Count == 0)
 					{
 						this.invocationTargets.Remove(target);
-						target.EventHandler = null;
-						target = null;
 					}
 					
 					if (this.invocationTargets.Count == 0)
@@ -148,7 +181,16 @@ namespace Sparrow
 			return this.invocationTargets.ToArray();			
 		}
 		
-
+		protected override void Dispose(bool disposing)
+		{
+			if (this.invocationTargets != null)
+			{
+				this.invocationTargets.Clear();
+				this.invocationTargets = null;
+			}
+			
+			base.Dispose(disposing);
+		}
 	}
 }
 

@@ -73,7 +73,6 @@ Global
 		$2.UsingBraceForcement = AddBraces
 		$2.FixedBraceForcement = AddBraces
 		$2.PlaceElseOnNewLine = True
-		$2.PlaceElseIfOnNewLine = True
 		$2.PlaceCatchOnNewLine = True
 		$2.PlaceFinallyOnNewLine = True
 		$2.PlaceWhileOnNewLine = True

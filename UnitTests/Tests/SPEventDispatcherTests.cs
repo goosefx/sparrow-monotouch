@@ -59,5 +59,47 @@ namespace UnitTests
 			
 			#endregion
 		}
+		
+		[Test]
+		public void ManagedEvents()
+		{
+			#region ...
+			
+			bool onStage = false;
+			bool added = false;
+			
+			SPStage stage = new SPStage();
+			
+			SPQuad obj = new SPQuad(16.0f, 16.0f);
+			
+			obj.Added += delegate(SPEventDispatcher source, SPEventArgs e) {
+				added = true;	
+			};
+			
+			obj.AddedToStage += delegate(SPEventDispatcher source, SPEventArgs e) {
+				onStage = true;	
+			};
+			
+			obj.Removed += delegate(SPEventDispatcher source, SPEventArgs e) {
+				added = false;	
+			};
+			
+			obj.RemovedFromStage += delegate(SPEventDispatcher source, SPEventArgs e) {
+				onStage = false;	
+			};
+			
+	
+			stage.Add(obj);
+			
+			Assert.True(added);
+			Assert.True(onStage);
+			
+			stage.Remove(obj);
+			
+			Assert.False(added);
+			Assert.False(onStage);
+			
+			#endregion
+		}
 	}
 }
