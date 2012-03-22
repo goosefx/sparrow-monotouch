@@ -6,12 +6,12 @@ Created by Marcus Wilhelm (mwilhelm@me.com).
 
 ## Class Hierarchy
 
-- [SPEvent](SPEvent.md)
-- [SPEventDispatcher](SPEventDispatcher.md)
-   - [SPDisplayObject](SPDisplayObject.md)
-      - [SPQuad](SPQuad.md)
-      - [SPDisplayObjectContainer](SPDisplayObjectContainer.md)
-         - [SPStage](SPStage.md)
+- [SPEvent](api/SPEvent.md)
+- [SPEventDispatcher](api/SPEventDispatcher.md)
+   - [SPDisplayObject](api/SPDisplayObject.md)
+      - [SPQuad](api/SPQuad.md)
+      - [SPDisplayObjectContainer](api/SPDisplayObjectContainer.md)
+         - [SPStage](api/SPStage.md)
 
 ## License
 

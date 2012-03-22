@@ -52,6 +52,8 @@ namespace Sparrow
 	{
 		private List<SPEventDispatcherInvocationTarget> invocationTargets = null;
 		
+		// while we try to find a matching invocation target for the given event handler we do
+		// some cleanup (for disposed objects)
 		private bool TryGetInvocationTarget(Delegate eventHandler, out SPEventDispatcherInvocationTarget target)
 		{
 			List<SPEventDispatcherInvocationTarget> invalidTargets = null;
