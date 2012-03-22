@@ -1,4 +1,4 @@
-[Sparrow Framework 1.3 MonoTouch Documentation](index.md) 
+[Sparrow Framework 1.3 MonoTouch Documentation](../index.md) 
 # SPDisplayObject
 
 	public abstract class SPDisplayObject : SPEventDispatcher

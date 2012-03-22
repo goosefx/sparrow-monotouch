@@ -1,4 +1,4 @@
-[Sparrow Framework 1.3 MonoTouch Documentation](index.md) 
+[Sparrow Framework 1.3 MonoTouch Documentation](../index.md) 
 # SPEvent
 
 	public class SPEvent : NSObject, SPEventArgs
@@ -39,7 +39,7 @@ Prevents listeners at the next bubble stage from receiving the event. As an even
 
 	public interface SPEventArgs
 
-Thus, Sparrow native events integrate better into C#, we have used a little trick. SPEventArgs (an interface) decorates an SPEvent object so it fits better into the .NET universe.
+Thus, native events integrate better into `.NET`, we have used a little trick. SPEventArgs mimics the functionality of `System.ComponentModel.CancelEventArgs`. Setting the `Cancel` property to `true` will immediatly stop the event propagation. Also we have declared all common native events as `.NET` events.
 
 **Here is a sample:**
 
@@ -47,8 +47,7 @@ Thus, Sparrow native events integrate better into C#, we have used a little tric
 		// do something 
 	};
 
-Furthermore, SPEventArgs mimics the functionality of `System.ComponentModel.CancelEventArgs`. Setting the `Cancel` property to `true` will immediatly stop the event propagation. 	
-### Properties
+## Properties
 
  - `EventType` : A string that identifies the event. *(readonly)*
  - `Bubbles` : Prevents listeners at the next bubble stage from receiving the event. **Note** that you can never force a non-bubbling event to bubble (this will trigger an exception).

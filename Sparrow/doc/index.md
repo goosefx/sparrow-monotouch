@@ -2,7 +2,7 @@
 
 MonoTouch bindings for Sparrow 1.3 (latest version). 
 
-Created by Marcus Wilhelm (mwilhelm@me.com). 
+Sparrow targeted on making game development as easy and hassle-free as possible. Sparrow makes it possible to write fast OpenGL applications without having to touch OpenGL. It uses a tried and tested API that is easy to use and hard to misuse.
 
 ## Class Hierarchy
 
