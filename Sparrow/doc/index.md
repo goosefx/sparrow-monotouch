@@ -15,6 +15,7 @@ Sparrow targeted on making game development as easy and hassle-free as possible.
  - [SPStage](api/SPStage.md) *(TODO)*
  - [SPDisplayObjectContainer](api/SPDisplayObjectContainer.md)
  - [SPSprite](api/SPSprite.md) *(TODO)*
+ - [SPCompiledSprite](api/SPCompiledSprite.md) *(TODO)*
  - [SPButton](api/SPButton.md) *(TODO)*
  - [SPTextField](api/SPTextField.md) *(TODO)*
  
@@ -23,8 +24,10 @@ Sparrow targeted on making game development as easy and hassle-free as possible.
  - [SPEvent](api/SPEvent.md) ([SPEventArgs](api/SPEvent.md), [SPEventHandler](api/SPEvent.md))
  - [SPEnterFrameEvent](api/SPEnterFrameEvent.md) ([SPEnterFrameEventArgs](api/SPEnterFrameEvent.md), [SPEnterFrameEventHandler](api/SPEnterFrameEvent.md)) *(TODO)*
  - [SPTouchEvent](api/SPTouchEvent.md) ([SPTouchEventArgs](api/SPTouchEvent.md), [SPTouchEventHandler](api/SPTouchEvent.md)) *(TODO)*
+ - [SPTouch](api/SPTouch.md) *(TODO)*
+ - [SPTouchProcessor](api/SPTouchProcessor.md) *(TODO)*
  - [SPEventDispatcher](api/SPEventDispatcher.md)
-
+ 
 ### Texture Handling
 
  - [SPTexture](api/SPTexture.md) *(TODO)*
@@ -32,7 +35,6 @@ Sparrow targeted on making game development as easy and hassle-free as possible.
  - [SPRenderTexture](api/SPRenderTexture.md) *(TODO)*
  - [SPGLTexture](api/SPGLTexture.md) *(TODO)*
  - [SPTextureAtlas](api/SPTextureAtlas.md) *(TODO)*
- - [SPCompiledSprite](api/SPCompiledSprite.md) *(TODO)*
  - [SPBitmapFont](api/SPBitmapFont.md) *(TODO)*
  - [SPBitmapChar](api/SPBitmapChar.md) *(TODO)*
 
@@ -52,6 +54,7 @@ Sparrow targeted on making game development as easy and hassle-free as possible.
  - [SPTransitions](api/SPTransitions.md) *(TODO)*
  - [SPTween](api/SPTween.md) *(TODO)*
  - [SPTweenProperty](api/SPTweenProperty.md) *(TODO)*
+ - [SPDelayedInvocation](api/SPDelayedInvocation.md) *(TODO)*
    
 ### Value Types
 
@@ -61,10 +64,7 @@ Sparrow targeted on making game development as easy and hassle-free as possible.
 
 ### Other
 
- - [SPColor](api/SPColor.md) *(TODO)*
- - [SPTouch](api/SPTouch.md) *(TODO)*
- - [SPTouchProcessor](api/SPTouchProcessor.md) *(TODO)*
- - [SPDelayedInvocation](api/SPDelayedInvocation.md) *(TODO)*
+ - [SPColor](api/SPColor.md)
  - [SPPoolObject](api/SPPoolObject.md) ([SPPoolInfo](api/SPPoolObject.md))  *(TODO)*
  - [SPRenderSupport](api/SPRenderSupport.md) *(TODO)*
  - [SPUtils](api/SPUtils.md) *(TODO)*
