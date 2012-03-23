@@ -16,7 +16,6 @@ namespace Sparrow
 	/// The SPAnimatable protocol describes objects that are animated depending on the passed time. 
 	/// Any object that implements this protocol can be added to the SPJuggler.
 	/// </summary>
-	[BaseType (typeof(NSObject))]
 	[Model]
 	public interface SPAnimatable
 	{
@@ -666,7 +665,7 @@ namespace Sparrow
 	
 	#region SPJuggler (TODO)
 	[BaseType(typeof(NSObject))]
-	public interface SPJuggler //: SPAnimatable
+	public interface SPJuggler : SPAnimatable
 	{
 		
 	}
