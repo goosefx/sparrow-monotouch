@@ -30,6 +30,10 @@ Scales the point by a certain factor and returns the resulting point.
 
 Rotates the point by the given angle (in radians, CCW) and returns the resulting point.
 		
+	float Dot(SPPoint other)		
+	
+Returns the dot-product of this and the given point.
+		
 	SPPoint Normalize()
 
 Returns a point that has the same direction but a length of one.
@@ -66,9 +70,6 @@ Adds the second to the first point and returns the resulting point.
 
 Subtracts the second from the first point and returns the resulting point.
 
-	float dot = p1 * p2;
-	
-Calculates the dot-product between two points.
 
 	SPPoint p2 = p1 * 0.5f;
 	

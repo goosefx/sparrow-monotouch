@@ -20,7 +20,7 @@ namespace Sparrow
 	
 	#endregion
 	
-	#region SPPoint (WORKING...)
+	#region SPPoint (DONE)
 	
 	[BaseType (typeof(SPPoolObject))]
 	[DisableDefaultCtor]
@@ -28,19 +28,15 @@ namespace Sparrow
 	{
 		#region Static
 		
-		/// Creates a point with the distance and angle in respect to the origin.
 		[Static, Export("pointWithPolarLength:angle:")]
 		SPPoint WithPolarLength(float length, float angle);
 		
-		/// Calculates the distance between two points.
 		[Static, Export("distanceFromPoint:toPoint:")]
 		float CalculateDistance(SPPoint p1, SPPoint p2);
 
-		/// Calculates the angle between two points.
 		[Static, Export("angleBetweenPoint:andPoint:")]
 		float CalculateAngle(SPPoint p1, SPPoint p2);
 		
-		/// Determines a point between two specified points. `ratio = 0 -> p1, ratio = 1 -> p2`
 		[Static, Export("interpolateFromPoint:toPoint:ratio:")]
 		SPPoint Interpolate(SPPoint p1, SPPoint p2, float ratio);
 
@@ -48,7 +44,6 @@ namespace Sparrow
 		
 		#region Properties
 		
-		/// The x-Coordinate of the point.
 		[Export("x", ArgumentSemantic.Assign)]
 		float X
 		{
@@ -56,7 +51,6 @@ namespace Sparrow
 			set; 
 		}
 		
-		/// The y-Coordinate of the point.
 		[Export("y", ArgumentSemantic.Assign)]
 		float Y
 		{
@@ -64,28 +58,24 @@ namespace Sparrow
 			set; 
 		}
 		
-		/// The distance to the origin (or the length of the vector).
 		[Export("length", ArgumentSemantic.Assign)]
 		float Length
 		{
 			get;
 		}
 		
-		/// The squared distance to the origin (or the squared length of the vector)
 		[Export("lengthSquared")]
 		float LengthSquared
 		{
 			get;
 		}
 		
-		/// The angle between the positive x-axis and the point (in radians, CCW).
 		[Export("angle")]
 		float Angle
 		{
 			get;
 		}
 		
-		/// Returns true if this point is in the origin (x and y equal zero).
 		[Export("isOrigin")]
 		bool IsOrigin
 		{
@@ -111,28 +101,21 @@ namespace Sparrow
 		[Export("subtractPoint:")]
 		SPPoint _SubtractPoint(SPPoint point);
 		
-		/// Scales the point by a certain factor and returns the resulting point.
 		[Export("scaleBy:")]
 		SPPoint Scale(float scalar);
 		
-		/// Rotates the point by the given angle (in radians, CCW) and returns the resulting point.
 		[Export("rotateBy:")]
 		SPPoint Rotate(float angle);
 		
-		/// Returns a point that has the same direction but a length of one.
 		[Export("normalize")]
 		SPPoint Normalize();
 		
-		/// Returns a point that is the inverse (negation) of this point.
 		[Export("invert")]
 		SPPoint Invert();
 		
-		/// Returns the dot-product of this and the given point.
-		[Internal]
 		[Export("dot:")]
-		float _Dot(SPPoint other);
+		float Dot(SPPoint other);
 		
-		/// Compares two points.
 		[Internal]
 		[Export("isEqual:")]
 		bool _IsEqual(NSObject other);

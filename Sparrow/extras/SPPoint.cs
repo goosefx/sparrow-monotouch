@@ -35,11 +35,6 @@ namespace Sparrow
 			return p1._SubtractPoint(p2);
 		}
 		
-		public static float operator *(SPPoint p1, SPPoint p2)
-		{
-			return p1._Dot(p2);
-		}
-		
 		public static SPPoint operator *(SPPoint p1, float scalar)
 		{
 			return p1.Scale(scalar);

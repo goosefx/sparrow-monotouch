@@ -26,7 +26,7 @@ namespace UnitTests
 			SPPoint p11 = p2 * 0.5f;
 			float f1 = SPPoint.CalculateDistance(p1, p2);
 			float f2 = SPPoint.CalculateAngle(p2, p4);
-			float f3 = p2 * p4; // ???
+			float f3 = p2.Dot(p4); // ???
 			PointF p12 = p3;
 			SPPoint p13 = p12;
 			
