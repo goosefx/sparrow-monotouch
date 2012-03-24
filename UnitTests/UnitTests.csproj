@@ -72,6 +72,7 @@
     <Compile Include="Tests\SPDisplayObjectTests.cs" />
     <Compile Include="Tests\SPEventDispatcherTests.cs" />
     <Compile Include="Tests\SPQuadTests.cs" />
+    <Compile Include="Tests\SPPointTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -55,6 +55,7 @@
     <Compile Include="extras\SPEvent.cs" />
     <Compile Include="extras\SPColor.cs" />
     <Compile Include="extras\SPQuad.cs" />
+    <Compile Include="extras\SPPoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingNativeLibrary Include="libSparrow-debug.a" />

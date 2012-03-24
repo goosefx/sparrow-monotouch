@@ -10,32 +10,6 @@ using MonoTouch.AVFoundation;
 // Version 1.3
 namespace Sparrow
 {
-	#region Protocol SPAnimatable (DONE)
-	
-	/// <summary>
-	/// The SPAnimatable protocol describes objects that are animated depending on the passed time. 
-	/// Any object that implements this protocol can be added to the SPJuggler.
-	/// </summary>
-	[Model]
-	public interface SPAnimatable
-	{
-		/// <summary>
-		/// Indicates if the animation is finished. (The juggler will purge the object.)
-		/// </summary>
-		[Export("isComplete")]
-		bool IsComplete
-		{
-			get;
-		}
-		
-		/// <summary>
-		/// Advance the animation by a number of seconds.
-		/// </summary>
-		[Export("advanceTime:")]
-		void AdvanceTime(double seconds);
-	}
-	#endregion
-	
 	#region SPPoolObject (TODO)
 	
 	[BaseType (typeof(NSObject))]
@@ -46,12 +20,124 @@ namespace Sparrow
 	
 	#endregion
 	
-	#region SPPoint (TODO)
+	#region SPPoint (WORKING...)
 	
 	[BaseType (typeof(SPPoolObject))]
+	[DisableDefaultCtor]
 	public interface SPPoint
 	{
+		#region Static
 		
+		/// Creates a point with the distance and angle in respect to the origin.
+		[Static, Export("pointWithPolarLength:angle:")]
+		SPPoint WithPolarLength(float length, float angle);
+		
+		/// Calculates the distance between two points.
+		[Static, Export("distanceFromPoint:toPoint:")]
+		float CalculateDistance(SPPoint p1, SPPoint p2);
+
+		/// Calculates the angle between two points.
+		[Static, Export("angleBetweenPoint:andPoint:")]
+		float CalculateAngle(SPPoint p1, SPPoint p2);
+		
+		/// Determines a point between two specified points. `ratio = 0 -> p1, ratio = 1 -> p2`
+		[Static, Export("interpolateFromPoint:toPoint:ratio:")]
+		SPPoint Interpolate(SPPoint p1, SPPoint p2, float ratio);
+
+		#endregion
+		
+		#region Properties
+		
+		/// The x-Coordinate of the point.
+		[Export("x", ArgumentSemantic.Assign)]
+		float X
+		{
+			get;
+			set; 
+		}
+		
+		/// The y-Coordinate of the point.
+		[Export("y", ArgumentSemantic.Assign)]
+		float Y
+		{
+			get;
+			set; 
+		}
+		
+		/// The distance to the origin (or the length of the vector).
+		[Export("length", ArgumentSemantic.Assign)]
+		float Length
+		{
+			get;
+		}
+		
+		/// The squared distance to the origin (or the squared length of the vector)
+		[Export("lengthSquared")]
+		float LengthSquared
+		{
+			get;
+		}
+		
+		/// The angle between the positive x-axis and the point (in radians, CCW).
+		[Export("angle")]
+		float Angle
+		{
+			get;
+		}
+		
+		/// Returns true if this point is in the origin (x and y equal zero).
+		[Export("isOrigin")]
+		bool IsOrigin
+		{
+			get;
+		}
+			
+		#endregion
+		
+		#region Constructors
+		
+		[Export ("initWithX:y:")]
+		IntPtr Constructor(float x, float y);
+
+		#endregion
+		
+		#region Methods
+		
+		[Internal]
+		[Export("addPoint:")]
+		SPPoint _AddPoint(SPPoint point);
+		
+		[Internal]
+		[Export("subtractPoint:")]
+		SPPoint _SubtractPoint(SPPoint point);
+		
+		/// Scales the point by a certain factor and returns the resulting point.
+		[Export("scaleBy:")]
+		SPPoint Scale(float scalar);
+		
+		/// Rotates the point by the given angle (in radians, CCW) and returns the resulting point.
+		[Export("rotateBy:")]
+		SPPoint Rotate(float angle);
+		
+		/// Returns a point that has the same direction but a length of one.
+		[Export("normalize")]
+		SPPoint Normalize();
+		
+		/// Returns a point that is the inverse (negation) of this point.
+		[Export("invert")]
+		SPPoint Invert();
+		
+		/// Returns the dot-product of this and the given point.
+		[Internal]
+		[Export("dot:")]
+		float _Dot(SPPoint other);
+		
+		/// Compares two points.
+		[Internal]
+		[Export("isEqual:")]
+		bool _IsEqual(NSObject other);
+		
+		#endregion
 	}
 	
 	#endregion
@@ -125,84 +211,84 @@ namespace Sparrow
 	{
 		#region Properties
 		
-		[Export("x")]
+		[Export("x", ArgumentSemantic.Assign)]
 		float X
 		{
 			get;
 			set;
 		}
 		
-		[Export("y")]
+		[Export("y", ArgumentSemantic.Assign)]
 		float Y
 		{
 			get;
 			set;
 		}
 		
-		[Export("pivotX")]
+		[Export("pivotX", ArgumentSemantic.Assign)]
 		float PivotX
 		{
 			get;
 			set;
 		}
 		
-		[Export("pivotY")]
+		[Export("pivotY", ArgumentSemantic.Assign)]
 		float PivotY
 		{
 			get;
 			set;
 		}
 		
-		[Export("scaleX")]
+		[Export("scaleX", ArgumentSemantic.Assign)]
 		float ScaleX
 		{
 			get;
 			set;
 		}
 	
-		[Export("scaleY")]
+		[Export("scaleY", ArgumentSemantic.Assign)]
 		float ScaleY
 		{
 			get;
 			set;
 		}
 		
-		[Export("width")]
+		[Export("width", ArgumentSemantic.Assign)]
 		float Width
 		{
 			get;
 			set;
 		}
 		
-		[Export("height")]
+		[Export("height", ArgumentSemantic.Assign)]
 		float Height
 		{
 			get;
 			set;
 		}
 		
-		[Export("rotation")]
+		[Export("rotation", ArgumentSemantic.Assign)]
 		float Rotation
 		{
 			get;
 			set;
 		}
 		
-		[Export("alpha")]
+		[Export("alpha", ArgumentSemantic.Assign)]
 		float Alpha
 		{
 			get;
 			set;
 		}
 		
-		[Export("visible")]
+		[Export("visible", ArgumentSemantic.Assign)]
 		bool Visible
 		{
 			get;
 			set;
 		}
 		
-		[Export("touchable")]
+		[Export("touchable", ArgumentSemantic.Assign)]
 		bool Touchable
 		{
 			get;
@@ -350,7 +436,7 @@ namespace Sparrow
 	{
 		#region Properties
 
-		[Export("color")]
+		[Export("color", ArgumentSemantic.Assign)]
 		uint Color
 		{
 			get;
@@ -480,7 +566,7 @@ namespace Sparrow
 		/// The requested number of frames per second. Must be a divisor of 60 (like 30, 20, 15, 12, 10, etc.).
 		/// The actual frame rate might be lower if there is too much to process.
 		/// </summary>
-		[Export("frameRate")]
+		[Export("frameRate", ArgumentSemantic.Assign)]
 		float FrameRate
 		{
 			get;
@@ -490,7 +576,7 @@ namespace Sparrow
 		/// <summary>
 		/// The background color of the stage. Default: black (0x000000).
 		/// </summary>
-		[Export("color")]
+		[Export("color", ArgumentSemantic.Assign)]
 		uint Color
 		{
 			get;
@@ -665,7 +751,7 @@ namespace Sparrow
 	
 	#region SPJuggler (TODO)
 	[BaseType(typeof(NSObject))]
-	public interface SPJuggler : SPAnimatable
+	public interface SPJuggler
 	{
 		
 	}
