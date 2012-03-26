@@ -43,11 +43,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Xamarin.ObjcBinding.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="libSparrow-debug.linkwith.cs">
-      <DependentUpon>libSparrow-debug.a</DependentUpon>
-    </Compile>
-    <Compile Include="libSparrow-release.linkwith.cs">
-      <DependentUpon>libSparrow-release.a</DependentUpon>
+    <Compile Include="libSparrow.linkwith.cs">
+      <DependentUpon>libSparrow.a</DependentUpon>
     </Compile>
     <Compile Include="extras\SPDisplayObjectContainer.cs" />
     <Compile Include="extras\SPEventDispatcher.cs" />
@@ -59,8 +56,7 @@
     <Compile Include="extras\SPRectangle.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ObjcBindingNativeLibrary Include="libSparrow-debug.a" />
-    <ObjcBindingNativeLibrary Include="libSparrow-release.a" />
+    <ObjcBindingNativeLibrary Include="libSparrow.a" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="api\" />
