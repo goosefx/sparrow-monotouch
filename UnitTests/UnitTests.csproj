@@ -61,9 +61,6 @@
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
     <Reference Include="MonoTouch.NUnitLite" />
-    <Reference Include="Sparrow">
-      <HintPath>..\Sparrow\bin\Debug\Sparrow.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -81,5 +78,11 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Tests\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sparrow\Sparrow.csproj">
+      <Project>{6ACAC2CE-7D95-4518-839E-7AA5C3A94969}</Project>
+      <Name>Sparrow</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

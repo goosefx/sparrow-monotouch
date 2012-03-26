@@ -64,6 +64,10 @@ namespace UnitTests
 			Assert.True(r14.IsEmpty);
 			Assert.True(r1.IntersectsWith(r4));
 			Assert.False(r1.IntersectsWith(r5));
+			Assert.True(r1.Contains(r2));
+			Assert.False(r1.Contains(r5));
+			Assert.True(r1.Contains(6.0f, 11.0f));
+			Assert.True(r1.Contains(new SPPoint(6.0f, 11.0f)));
 			
 			Assert.True(r1 == r2);
 			Assert.True(r1 == r3);
