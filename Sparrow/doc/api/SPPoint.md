@@ -1,7 +1,7 @@
 [Sparrow Framework 1.3 MonoTouch Documentation](../index.md) 
 # SPPoint
 
-		public class SPPoint : NSObject
+		public class SPPoint : SPPoolObject
 
 The SPPoint class describes a two dimensional point or vector.
 
@@ -44,7 +44,7 @@ Returns a point that is the inverse (negation) of this point.
 		
 ## Static Methods
 
-	SPPoint WithPolarLength(float length, float angle);
+	SPPoint FromPolarLength(float length, float angle);
 	
 Creates a point with the distance and angle in respect to the origin.
 		
@@ -70,7 +70,6 @@ Adds the second to the first point and returns the resulting point.
 
 Subtracts the second from the first point and returns the resulting point.
 
-
 	SPPoint p2 = p1 * 0.5f;
 	
 Scales the point by a certain factor.
@@ -89,4 +88,4 @@ Implicit convert between System and Sparrow points.
 
 **See Also:**
 
- - [SPRectangle](SPRectangel.md)
+ - [SPRectangle](SPRectangle.md)

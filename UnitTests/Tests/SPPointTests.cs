@@ -19,14 +19,14 @@ namespace UnitTests
 			SPPoint p4 = p3.Rotate(-1.570796327f);
 			SPPoint p5 = p3.Normalize();
 			SPPoint p6 = p3.Invert();
-			SPPoint p7 = SPPoint.WithPolarLength(p2.Length, p2.Angle);
+			SPPoint p7 = SPPoint.FromPolarLength(p2.Length, p2.Angle);
 			SPPoint p8 = SPPoint.Interpolate(p1, p2, 0.5f);
 			SPPoint p9 = p2 + p3;
 			SPPoint p10 = p1 - p2;
 			SPPoint p11 = p2 * 0.5f;
 			float f1 = SPPoint.CalculateDistance(p1, p2);
 			float f2 = SPPoint.CalculateAngle(p2, p4);
-			float f3 = p2.Dot(p4); // ???
+			float f3 = p2.Dot(p4);
 			PointF p12 = p3;
 			SPPoint p13 = p12;
 			

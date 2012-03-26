@@ -56,6 +56,15 @@ namespace Sparrow
 		
 		public static bool operator !=(SPPoint p1, SPPoint p2)
 		{
+			if (ReferenceEquals(p1, p2))
+			{
+				return false;
+			}
+			if (ReferenceEquals(p1, null) || ReferenceEquals(p2, null))
+			{
+				return true;
+			}
+    		
 			return !p1._IsEqual(p2);
 		}
 		

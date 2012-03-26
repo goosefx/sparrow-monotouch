@@ -59,7 +59,7 @@ Sparrow targeted on making game development as easy and hassle-free as possible.
 ### Value Types
 
  - [SPPoint](api/SPPoint.md)
- - [SPRectangle](api/SPRectangle.md) *(TODO)*
+ - [SPRectangle](api/SPRectangle.md)
  - [SPMatrix](api/SPMatrix.md) *(TODO)*
 
 ### Other

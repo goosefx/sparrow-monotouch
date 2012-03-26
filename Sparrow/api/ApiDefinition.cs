@@ -29,7 +29,7 @@ namespace Sparrow
 		#region Static
 		
 		[Static, Export("pointWithPolarLength:angle:")]
-		SPPoint WithPolarLength(float length, float angle);
+		SPPoint FromPolarLength(float length, float angle);
 		
 		[Static, Export("distanceFromPoint:toPoint:")]
 		float CalculateDistance(SPPoint p1, SPPoint p2);
@@ -125,12 +125,137 @@ namespace Sparrow
 	
 	#endregion
 	
-	#region SPRectangle (TODO)
+	#region SPRectangle (DONE)
 	
 	[BaseType (typeof(SPPoolObject))]
+	[DisableDefaultCtor]
 	public interface SPRectangle
 	{
+		#region Properties
 		
+		[Export("x", ArgumentSemantic.Assign)]
+		float X
+		{
+			get;
+			set;
+		}
+		
+		[Export("y", ArgumentSemantic.Assign)]
+		float Y
+		{
+			get;
+			set;
+		}
+		
+		[Export("width", ArgumentSemantic.Assign)]
+		float Width
+		{
+			get;
+			set;
+		}
+		
+		[Export("height", ArgumentSemantic.Assign)]
+		float Height
+		{
+			get;
+			set;
+		}
+		
+		[Export("top", ArgumentSemantic.Assign)]
+		float Top
+		{
+			get;
+			set;
+		}
+		
+		[Export("bottom", ArgumentSemantic.Assign)]
+		float Bottom
+		{
+			get;
+			set;
+		}
+		
+		[Export("left", ArgumentSemantic.Assign)]
+		float Left
+		{
+			get;
+			set;
+		}
+		
+		[Export("right", ArgumentSemantic.Assign)]
+		float Right
+		{
+			get;
+			set;
+		}
+		
+		[Export("topLeft", ArgumentSemantic.Copy)]
+		SPPoint TopLeft
+		{
+			get;
+			set;
+		}
+		
+		[Export("topLeft", ArgumentSemantic.Copy)]
+		SPPoint Location
+		{
+			get;
+			set;
+		}
+		
+		[Export("bottomRight", ArgumentSemantic.Copy)]
+		SPPoint BottomRight
+		{
+			get;
+			set;
+		}
+		
+		[Export("size", ArgumentSemantic.Copy)]
+		SPPoint Size
+		{
+			get;
+			set;
+		}
+		
+		[Export("isEmpty")]
+		bool IsEmpty
+		{
+			get;
+		}
+		
+		#endregion
+		
+		#region Constructors
+		
+		[Export("initWithX:y:width:height:")]
+		IntPtr Constructor(float x, float y, float width, float height);
+		
+		#endregion
+	
+		#region Methods
+		
+		[Export("containsX:y:")]
+		bool Contains(float x, float y);
+		
+		[Export("containsPoint:")]
+		bool Contains(SPPoint point);
+		
+		[Export("containsRectangle:")]
+		bool Contains(SPRectangle rectangle);
+		
+		[Export("intersectsRectangle:")]
+		bool IntersectsWith(SPRectangle rectangle);
+		
+		[Export("intersectionWithRectangle:")]
+		SPRectangle Intersect(SPRectangle rectangle);
+		
+		[Export("uniteWithRectangle:")]
+		SPRectangle Union(SPRectangle rectangle);	
+		
+		[Export("setEmpty")]
+		void SetEmpty();
+		
+		#endregion
 	}
 	
 	#endregion
