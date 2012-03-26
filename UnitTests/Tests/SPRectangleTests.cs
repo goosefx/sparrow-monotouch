@@ -76,6 +76,8 @@ namespace UnitTests
 			Assert.True(r7 == r15);
 			Assert.True(r8 == r9);
 			Assert.False(r1 == r4);
+			
+			SPRectangle.PurgePool();
 		}
 
 	}

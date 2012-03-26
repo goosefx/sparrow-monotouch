@@ -76,6 +76,10 @@ Returns a copy of the rectangle.
 	public static SPRectangle FromLTRB(float left, float top, float right, float bottom)
 	
 Creates a rectangle with top-left corner and bottom-right corner at the specified locations.
+
+	public static int PurgePool()
+	
+Purge all unused objects. 
 		
 ## Operators
 
@@ -97,4 +101,5 @@ Implicit convert between System and Sparrow rectangles.
 
 **See Also:**
 
+ - [SPPoolObject](SPPoolObject.md)
  - [SPPoint](SPPoint.md)

@@ -54,6 +54,8 @@
     <Compile Include="extras\SPQuad.cs" />
     <Compile Include="extras\SPPoint.cs" />
     <Compile Include="extras\SPRectangle.cs" />
+    <Compile Include="extras\SPPoolObject.cs" />
+    <Compile Include="extras\SPMatrix.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingNativeLibrary Include="libSparrow.a" />

@@ -10,12 +10,26 @@ using MonoTouch.AVFoundation;
 // Version 1.3
 namespace Sparrow
 {
-	#region SPPoolObject (TODO)
+	#region SPPoolInfo (DONE)
+
+	[BaseType (typeof(NSObject))]
+	[DisableDefaultCtor]
+	public interface SPPoolInfo
+	{
+		[Export("init")]
+		IntPtr Constructor();
+	}
+
+	#endregion
+	
+	#region SPPoolObject (DONE)
 	
 	[BaseType (typeof(NSObject))]
+	[DisableDefaultCtor]
 	public interface SPPoolObject
 	{
-		
+		[Export("init")]
+		IntPtr Constructor();
 	}
 	
 	#endregion
@@ -39,6 +53,9 @@ namespace Sparrow
 		
 		[Static, Export("interpolateFromPoint:toPoint:ratio:")]
 		SPPoint Interpolate(SPPoint p1, SPPoint p2, float ratio);
+
+		[Static, Export("purgePool")]
+		int PurgePool();
 
 		#endregion
 		
@@ -131,6 +148,13 @@ namespace Sparrow
 	[DisableDefaultCtor]
 	public interface SPRectangle
 	{
+		#region Static
+		
+		[Static, Export("purgePool")]
+		int PurgePool();
+
+		#endregion
+		
 		#region Properties
 		
 		[Export("x", ArgumentSemantic.Assign)]
@@ -260,19 +284,118 @@ namespace Sparrow
 	
 	#endregion
 	
-	#region SPMatrix (TODO)
+	#region SPMatrix (DONE)
 	
 	[BaseType (typeof(SPPoolObject))]
+	[DisableDefaultCtor]
 	public interface SPMatrix
 	{
+		#region Static
 		
+		[Static, Export("purgePool")]
+		int PurgePool();
+
+		#endregion
+		
+		#region Properties
+		
+		[Export("a", ArgumentSemantic.Assign)]
+		float A
+		{
+			get;
+			set;
+		}
+		
+		[Export("b", ArgumentSemantic.Assign)]
+		float B
+		{
+			get;
+			set;
+		}
+		
+		[Export("c", ArgumentSemantic.Assign)]
+		float C
+		{
+			get;
+			set;
+		}
+		
+		[Export("d", ArgumentSemantic.Assign)]
+		float D
+		{
+			get;
+			set;
+		}
+		
+		[Export("tx", ArgumentSemantic.Assign)]
+		float Tx
+		{
+			get;
+			set;
+		}
+		
+		[Export("ty", ArgumentSemantic.Assign)]
+		float Ty
+		{
+			get;
+			set;
+		}
+		
+		[Export("determinant")]
+		float Determinant
+		{
+			get;
+		}
+		
+		#endregion
+		
+		#region Constructors
+		
+		[Export("initWithA:b:c:d:tx:ty:")]
+		IntPtr Constructor(float a, float b, float c, float d, float tx, float ty);
+		
+		[Export("init")]
+		IntPtr Constructor();
+		
+		#endregion
+	
+		#region Methods
+
+		[Export("setA:b:c:d:tx:ty:")]
+		void Set(float a, float b, float c, float d, float tx, float ty);
+			
+		[Internal, Export("isEqual:")]
+		bool _IsEqual(NSObject other);
+		
+		[Export("concatMatrix:")]
+		void Concat(SPMatrix matrix);
+		
+		[Export("translateXBy:yBy:")]
+		void Translate(float dx, float dy);
+		
+		[Export("scaleXBy:yBy:")]
+		void Scale(float sx, float sy);
+		
+		[Export("scaleBy:")]
+		void Scale(float scale);
+		
+		[Export("rotateBy:")]
+		void Rotate(float angle);
+		
+		[Export("identity")]
+		void SetIdentity();
+
+		[Export("invert")]
+		void Invert();
+		
+		[Export("transformPoint:")]
+		SPPoint Transform(SPPoint point);
+		
+		#endregion
 	}
 	
 	#endregion
 	
-	#region SPNSExtensions (TODO) 
-	#endregion
-
 	#region SPEventDispatcher (DONE) 
 	
 	[Abstract]
@@ -291,18 +414,12 @@ namespace Sparrow
 		[Internal, Export("removeEventListener:atObject:forType:")]
 		void _RemoveEventListener(Selector listener, NSObject object_, string eventType);
 		
-		// (not required) Removes all event listeners at an object that have a certain type.
+		// (not required)
 		//- (void)removeEventListenersAtObject:(id)object forType:(NSString*)eventType;
 		
-		/// <summary>
-		/// Dispatches an event to all objects that have registered for events of the same type.
-		/// </summary>
 		[Export("dispatchEvent:")]
 		void DispatchEvent(SPEvent event_);
 		
-		/// <summary>
-		/// Returns if there are listeners registered for a certain event type.
-		/// </summary>
 		[Export("hasEventListenerForType:")]
 		void HasEventListener(string eventType);
 		

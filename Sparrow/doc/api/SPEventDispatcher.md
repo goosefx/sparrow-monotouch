@@ -35,6 +35,14 @@ Registers an event listener. It is recommended to call this method without `reta
 
 Removes an event listener.
 
+	void DispatchEvent(SPEvent event);
+
+Dispatches an event to all objects that have registered for events of the same type.
+		
+	void HasEventListener(string eventType);
+
+Returns if there are listeners registered for a certain event type.
+
 ---	
  
 **See Also:**

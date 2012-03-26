@@ -13,6 +13,18 @@ In that case, you can subclass SPEvent and add properties with all the informati
  
 Furthermore, the event class contains methods that can stop the event from being processed by other listeners - either completely or at the next bubble stage.
 
+**The following event types are predefined:**
+
+ - `added` --> use const `SPEventType.Added`
+ - `addedToStage` --> use const `SPEventType.AddedToStage`
+ - `removed` --> use const `SPEventType.Removed`
+ - `removedFromStage` --> use const `SPEventType.RemovedFromStage`
+
+These events will need additional information:
+
+ - `touch` --> use const `SPEventType.Touch` (see also: [SPTouchEvent](api/SPTouchEvent.md))
+ - `enterFrame` --> use const `SPEventType.EnterFrame` (see also: [SPEnterFrameEvent](api/SPEnterFrameEvent.md))
+
 ## Properties
 
  - `EventType` : A string that identifies the event. *(readonly)*
@@ -33,7 +45,6 @@ Prevents any other listeners from receiving the event. Normally you would use th
 	void StopPropagation();
 	
 Prevents listeners at the next bubble stage from receiving the event. As an event listener you can set the `Bubbles` property of SPEventArgs to `false` (see below).
-
 
 # SPEventArgs
 
@@ -65,4 +76,6 @@ Represents the method that will handle an SPEvent.
 
 **See Also:**
  
+ - [SPTouchEvent](api/SPTouchEvent.md)
+ - [SPEnterFrameEvent](api/SPEnterFrameEvent.md)
  - [SPEventDispatcher](SPEventDispatcher.md)

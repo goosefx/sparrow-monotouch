@@ -67,6 +67,7 @@ namespace UnitTests
 			
 			bool onStage = false;
 			bool added = false;
+			bool custom = false;
 			
 			SPStage stage = new SPStage();
 			
@@ -88,7 +89,14 @@ namespace UnitTests
 				onStage = false;	
 			};
 			
+			obj.AddEventListener("custom", (SPEventHandler)delegate(SPEventDispatcher source, SPEventArgs e) {
+				custom = true;	
+			});
+			
+			obj.DispatchEvent(new SPEvent("custom"));
 	
+			Assert.True(custom);
+			
 			stage.Add(obj);
 			
 			Assert.True(added);

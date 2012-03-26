@@ -60,6 +60,10 @@ Calculates the angle between two points.
 
 Determines a point between two specified points. `ratio = 0 -> p1`, `ratio = 1 -> p2`
 
+	public static int PurgePool()
+	
+Purge all unused objects. 
+		
 ## Operators
 
 	SPPoint p3 = p1 + p2;
@@ -88,4 +92,5 @@ Implicit convert between System and Sparrow points.
 
 **See Also:**
 
+ - [SPPoolObject](SPPoolObject.md)
  - [SPRectangle](SPRectangle.md)

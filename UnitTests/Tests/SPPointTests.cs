@@ -58,6 +58,8 @@ namespace UnitTests
 			Assert.False(p11 != p3);
 			Assert.True(p3 == p13);
 			
+			SPPoint.PurgePool();
+			
 			#endregion
 		}
 	}

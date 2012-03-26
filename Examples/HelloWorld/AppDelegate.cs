@@ -82,9 +82,9 @@ namespace HelloWorld
 
 		public override void ReceiveMemoryWarning(UIApplication application)
 		{
-			//SPPoint.PurgePool();
-			//SPRectangle.PurgePool();
-			//SPMatrix.PurgePool();
+			SPPoint.PurgePool();
+			SPRectangle.PurgePool();
+			SPMatrix.PurgePool();
 		}
 	}
 }

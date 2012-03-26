@@ -78,8 +78,8 @@ You will need to implement the following methods when you subclass SPDisplayObje
 	
 	// native event listening
 	obj.AddEventLstener(SPEventType.Added, 
-	    delegate(SPEventDispatcher object, SPEventArgs e) {
-	        // an event was triggered
+	    (SPEventHandler)delegate(SPEventDispatcher object, SPEventArgs e) {
+	        // an added event was triggered
 	    }
 	);
 
@@ -121,4 +121,5 @@ Dispatches an [event](SPEvent.md) on all children (recursively). The event must 
  
 **See Also:**
  
+ - [SPEvent](SPEvent.md)
  - [SPEventDispatcher](SPEventDispatcher.md)

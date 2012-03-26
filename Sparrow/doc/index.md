@@ -60,12 +60,12 @@ Sparrow targeted on making game development as easy and hassle-free as possible.
 
  - [SPPoint](api/SPPoint.md)
  - [SPRectangle](api/SPRectangle.md)
- - [SPMatrix](api/SPMatrix.md) *(TODO)*
+ - [SPMatrix](api/SPMatrix.md)
 
 ### Other
 
  - [SPColor](api/SPColor.md)
- - [SPPoolObject](api/SPPoolObject.md) ([SPPoolInfo](api/SPPoolObject.md))  *(TODO)*
+ - [SPPoolObject](api/SPPoolObject.md) ([SPPoolInfo](api/SPPoolObject.md))
  - [SPRenderSupport](api/SPRenderSupport.md) *(TODO)*
  - [SPUtils](api/SPUtils.md) *(TODO)*
  - [SPView](api/SPView.md) *(TODO)*
