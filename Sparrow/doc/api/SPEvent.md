@@ -22,8 +22,8 @@ Furthermore, the event class contains methods that can stop the event from being
 
 These events will need additional information:
 
- - `touch` --> use const `SPEventType.Touch` (see also: [SPTouchEvent](api/SPTouchEvent.md))
- - `enterFrame` --> use const `SPEventType.EnterFrame` (see also: [SPEnterFrameEvent](api/SPEnterFrameEvent.md))
+ - `touch` --> use const `SPEventType.Touch` (see also: [SPTouchEvent](SPTouchEvent.md))
+ - `enterFrame` --> use const `SPEventType.EnterFrame` (see also: [SPEnterFrameEvent](SPEnterFrameEvent.md))
 
 ## Properties
 
@@ -76,6 +76,6 @@ Represents the method that will handle an SPEvent.
 
 **See Also:**
  
- - [SPTouchEvent](api/SPTouchEvent.md)
- - [SPEnterFrameEvent](api/SPEnterFrameEvent.md)
+ - [SPTouchEvent](SPTouchEvent.md)
+ - [SPEnterFrameEvent](SPEnterFrameEvent.md)
  - [SPEventDispatcher](SPEventDispatcher.md)
