@@ -5,7 +5,7 @@
 
 The SPPoolObject class is an alternative to the base class `NSObject` that manages a pool of objects.
  
-Subclasses of SPPoolObject do not deallocate object instances when the retain counter reaches zero. Instead, the objects stay in memory and will be re-used when a new instance of the object is requested. That way, object initialization is accelerated. You can release the memory of all recycled objects anytime by calling the `purgePool` method.
+Subclasses of SPPoolObject do not deallocate object instances when the retain counter reaches zero. Instead, the objects stay in memory and will be re-used when a new instance of the object is requested. That way, object initialization is accelerated. You can release the memory of all recycled objects anytime by calling the `PurgePool` method.
  
 Sparrow uses this class for [SPPoint](SPPoint.md), [SPRectangle](SPRectangle.md) and [SPMatrix](SPMatrix.md), as they are created very often as helper objects.
  

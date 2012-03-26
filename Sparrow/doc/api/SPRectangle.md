@@ -1,7 +1,7 @@
 [Sparrow Framework 1.3 MonoTouch Documentation](../index.md) 
 # SPRectangle
 
-		public class SPRectangle : SPPoolObject
+		public class SPRectangle : SPPoolObject, ICloneable
 
 The SPRectangle class describes a rectangle by its top-left corner point (x, y) and by its width and height.
 

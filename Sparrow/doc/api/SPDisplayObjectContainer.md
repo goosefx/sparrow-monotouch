@@ -111,4 +111,4 @@ Represents a method to compare two [objects](SPDisplayObject.md).
 **See Also:**
 
  - [SPDisplayObject](SPDisplayObject.md)
- - [SPSptrite](SPPrite.md)
+ - [SPSprite](SPSprite.md)
