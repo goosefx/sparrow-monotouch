@@ -7,8 +7,8 @@ The SPPoint class describes a two dimensional point or vector.
 
 ## Properties
 
-- `X` : The x-Coordinate of the point.
-- `Y` : The y-Coordinate of the point.
+- `X` : The x coordinate of the point.
+- `Y` : The y coordinate of the point.
 - `Length` : The distance to the origin (or the length of the vector). *(readonly)*
 - `LengthSquared` :  The squared distance to the origin (or the squared length of the vector). *(readonly)*
 - `Angle` : The angle between the positive x-axis and the point (in radians, CCW). *(readonly)*

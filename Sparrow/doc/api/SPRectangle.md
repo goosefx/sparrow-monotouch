@@ -3,7 +3,7 @@
 
 		public class SPRectangle : SPPoolObject
 
-The SPPoint class describes a two dimensional point or vector.
+The SPRectangle class describes a rectangle by its top-left corner point (x, y) and by its width and height.
 
 ## Properties
 
