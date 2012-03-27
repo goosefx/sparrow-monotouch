@@ -1,4 +1,6 @@
 using System;
+using MonoTouch.CoreGraphics;
+using MonoTouch.Foundation;
 
 namespace Sparrow
 {
@@ -15,6 +17,18 @@ namespace Sparrow
 		Center,
 		Bottom
 	}
-
+	
+	public enum SPColorSpace 
+	{
+    	RGBA,
+    	Alpha
+	}	
+	
+	public enum SPTextureFilter
+	{
+    	NearestNeighbor,
+    	Bilinear,
+    	Trilinear
+	} 
 }
 

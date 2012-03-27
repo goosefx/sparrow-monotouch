@@ -905,11 +905,45 @@ namespace Sparrow
 	
 	#region SPTexture (TODO) 
 	
+	public delegate void _SPTextureDrawingDelegate(IntPtr context);
+	
 	[BaseType (typeof(NSObject))]
 	[DisableDefaultCtor]
 	public interface SPTexture
 	{
+		#region Constructors
 		
+		/// Initializes a texture with a certain size (in points) and a block containing Core Graphics commands. 
+		/// The texture will have the current scale factor of the stage and an RGBA color space.
+		//- (id)initWithWidth:(float)width height:(float)height draw:(SPTextureDrawingBlock)drawingBlock;
+		[Internal, Export("initWithWidth:height:draw:")]
+		IntPtr Constructor(float width, float height, _SPTextureDrawingDelegate drawingDelegate);
+		
+		/// Initializes a texture with size and color properties, as well as a block containing 
+		/// Core Graphics commands.
+		//- (id)initWithWidth:(float)width height:(float)height scale:(float)scale 
+		//         colorSpace:(SPColorSpace)colorSpace draw:(SPTextureDrawingBlock)drawingBlock;
+		[Internal, Export("initWithWidth:height:scale:colorSpace:draw:")]
+		IntPtr Constructor(float width, float height, float scale, SPColorSpace colorSpace, 
+		                   _SPTextureDrawingDelegate drawingDelegate);
+		
+		/// Initializes a texture with the contents of a file. Recommended formats: png, jpg, pvr.
+		//- (id)initWithContentsOfFile:(NSString *)path;
+		[Export("initWithContentsOfFile:")]
+		IntPtr Constructor(string path);
+		
+		/// Initializes a texture with the contents of a UIImage.
+		//- (id)initWithContentsOfImage:(UIImage *)image;
+		[Export("initWithContentsOfImage:")]
+		IntPtr Constructor(UIImage image);
+		
+		/// Initializes a texture with a region (in points) of another texture. The new texture will 
+		/// reference the base texture; no data is duplicated.
+		//- (id)initWithRegion:(SPRectangle*)region ofTexture:(SPTexture*)texture;
+		[Export("initWithRegion:ofTexture:")]
+		IntPtr Constructor(SPRectangle region, SPTexture texture);
+
+		#endregion
 	}
 	
 	#endregion

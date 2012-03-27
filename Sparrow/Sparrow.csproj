@@ -58,6 +58,7 @@
     <Compile Include="extras\SPMatrix.cs" />
     <Compile Include="extras\SPStage.cs" />
     <Compile Include="extras\SPTextField.cs" />
+    <Compile Include="extras\SPTexture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingNativeLibrary Include="libSparrow.a" />

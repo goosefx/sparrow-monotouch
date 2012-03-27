@@ -30,7 +30,7 @@ Sparrow targeted on making game development as easy and hassle-free as possible.
  
 ### Texture Handling
 
- - [SPTexture](api/SPTexture.md) *(TODO)*
+ - [SPTexture](api/SPTexture.md)
  - [SPSubTexture](api/SPSubTexture.md) *(TODO)*
  - [SPRenderTexture](api/SPRenderTexture.md) *(TODO)*
  - [SPGLTexture](api/SPGLTexture.md) *(TODO)*
