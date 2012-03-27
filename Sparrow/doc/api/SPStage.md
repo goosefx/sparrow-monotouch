@@ -9,11 +9,11 @@ To create a Sparrow application, you create a class that inherits from SPStage a
  
 The stage allows you to access the native view object it is drawing its content to. (Currently, this is always an SPView). Furthermore, you can change the framerate in which the contents is rendered.
  
-You can access the stage from anywhere in your code with the following static method:
+You can access the stage from anywhere in your code:
 
     SPStage.MainStage
  
-A stage also contains a default juggler which you can use for your animations. It is advanced automatically once per frame. You can access this juggler from any display object by calling
+A stage also contains a default juggler which you can use for your animations. It is advanced automatically once per frame. You can access this juggler from any display object by calling:
  
     SPStage.MainStage.Juggler
 
