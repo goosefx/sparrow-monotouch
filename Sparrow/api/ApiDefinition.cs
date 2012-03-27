@@ -707,36 +707,13 @@ namespace Sparrow
 	#endregion
 	
 	#region SPStage (DONE)
-	/// <summary>
-	/// An SPStage is the root of the display tree. It represents the rendering area of the application.
-	/// </summary>
-	/// <remarks>
-	/// To create a Sparrow application, you create a class that inherits from SPStage and populates
-	/// the display tree.
-	/// 
-	/// The stage allows you to access the native view object it is drawing its content to. (Currently,
-	/// this is always an SPView). Furthermore, you can change the framerate in which the contents is 
-	/// rendered.
-	/// 
-	/// You can access the stage from anywhere in your code with the following static method:
-	/// 
-	/// 	SPStage.MainStage
-	/// 	 
-	/// A stage also contains a default juggler which you can use for your animations. It is advanced 
-	/// automatically once per frame. You can access this juggler from any display object by calling:
-	/// 
-	/// 	SPStage.MainStage.Juggler
-	/// 
-	/// </remarks>
+	
 	[BaseType (typeof(SPDisplayObjectContainer))]
 	[DisableDefaultCtor]
 	public interface SPStage
 	{
 		#region Static
 		
-		/// <summary>
-		/// Returns the first available stage instance. (In most cases, there is only one stage, anyway.)
-		/// </summary>
 		[Static]
 		[Export("mainStage")]
 		SPStage MainStage
@@ -744,9 +721,6 @@ namespace Sparrow
 			get;
 		}
 		
-		/// <summary>
-		/// Enables support for high resolutions (aka retina displays).
-		/// </summary>
 		[Static]
 		[Export("supportHighResolutions")]
 		bool SupportHighResolutions
@@ -754,10 +728,10 @@ namespace Sparrow
 			get;
 			set;
 		}
-		
-		/// <summary>
-		/// Determines if pad devices use twice the resolution.
-		/// </summary>
+	
+		// TODO: make internal and add wrapper property in extras
+		// to set DoubleResolutionsOnPad using
+		// SetSupportHighResolutions(hd, doubleOnPad)
 		[Static]
 		[Export("doubleResolutionsOnPad")]
 		bool DoubleResolutionsOnPad
@@ -765,9 +739,6 @@ namespace Sparrow
 			get;
 		}
 		
-		/// <summary>
-		/// The current content scale factor.
-		/// </summary>
 		[Static]
 		[Export("contentScaleFactor")]
 		float ContentScaleFactor
@@ -775,10 +746,7 @@ namespace Sparrow
 			get;
 		}
 		
-		/// <summary>
-		/// Enables support for high resolutions (aka retina displays). If 'doubleOnPad' is true, 
-		/// pad devices will use twice the resolution ('@2x' on iPad 1+2, '@4x' on iPad 3+).
-		/// </summary>
+		// TODO: internal
 		[Static]
 		[Export("setSupportHighResolutions")]
 		void SetSupportHighResolutions(bool hd, bool doubleOnPad);
@@ -786,11 +754,7 @@ namespace Sparrow
 		#endregion
 		
 		#region Properties
-		
-		/// <summary>
-		/// The requested number of frames per second. Must be a divisor of 60 (like 30, 20, 15, 12, 10, etc.).
-		/// The actual frame rate might be lower if there is too much to process.
-		/// </summary>
+	
 		[Export("frameRate", ArgumentSemantic.Assign)]
 		float FrameRate
 		{
@@ -798,9 +762,6 @@ namespace Sparrow
 			set;
 		}
 		
-		/// <summary>
-		/// The background color of the stage. Default: black (0x000000).
-		/// </summary>
 		[Export("color", ArgumentSemantic.Assign)]
 		uint Color
 		{
@@ -808,18 +769,12 @@ namespace Sparrow
 			set;
 		}
 		
-		/// <summary>
-		/// A juggler that is automatically advanced once per frame.
-		/// </summary>
 		[Export("juggler")]
 		SPJuggler Juggler
 		{
 			get;
 		}
 		
-		/// <summary>
-		/// The native view the stage is connected to.
-		/// </summary>
 		[Export("nativeView")]
 		SPView NativeView
 		{
@@ -830,15 +785,9 @@ namespace Sparrow
 		
 		#region Constructors
 		
-		/// <summary>
-		/// Initializes a fullscreen stage.
-		/// </summary>
 		[Export("init")]
 		IntPtr Constructor();
 		
-		/// <summary>
-		/// Initializes a stage with a certain size in points.
-		/// </summary>
 		[Export("initWithWidth:height:")]
 		IntPtr Constructor(float width, float height);
 		
@@ -846,16 +795,9 @@ namespace Sparrow
 		
 		#region Methods
 
-		/// <summary>
-		/// Dispatches an enter frame event on all children and advances the juggler.
-		/// </summary>
 		[Export("advanceTime:")]
 		void AdvanceTime(double seconds);
 
-		
-		/// <summary>
-		/// Process a new set up touches. Dispatches touch events on affected children.
-		/// </summary>
 		[Export("processTouches:")]
 		void ProcessTouches(NSSet touches);
 		
