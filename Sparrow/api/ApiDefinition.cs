@@ -698,6 +698,81 @@ namespace Sparrow
 	#endregion
 	
 	#region SPTextField (TODO) 
+	[BaseType (typeof(SPDisplayObjectContainer))]
+	[DisableDefaultCtor]
+	public interface SPTextField
+	{
+		#region Static
+		
+		/// Makes a bitmap font available at any text field, manually providing the texture.
+		/// 
+		/// @return The name of the font as defined in the font XML. 
+		//+ (NSString *)registerBitmapFontFromFile:(NSString*)path texture:(SPTexture *)texture;
+		
+		/// Makes a bitmap font available at any text field, using the texture defined in the file.
+		/// 
+		/// @return The name of the font as defined in the font XML. 
+		//+ (NSString *)registerBitmapFontFromFile:(NSString*)path;
+		
+		/// Releases the bitmap font.
+		//+ (void)unregisterBitmapFont:(NSString *)name;
+
+		#endregion
+		
+		#region Properties
+		
+		/// The displayed text.
+		//@property (nonatomic, copy) NSString *text;
+		
+		/// The name of the font.
+		//@property (nonatomic, copy) NSString *fontName;
+		
+		/// The size of the font. For bitmap fonts, use `SP_NATIVE_FONT_SIZE` for the original size.
+		//@property (nonatomic, assign) float fontSize;
+		
+		/// The horizontal alignment of the text.
+		//@property (nonatomic, assign) SPHAlign hAlign;
+		
+		/// The vertical alignment of the text.
+		//@property (nonatomic, assign) SPVAlign vAlign;
+		
+		/// Allows displaying a border around the edges of the text field. Useful for visual debugging.
+		//@property (nonatomic, assign) BOOL border;
+		
+		/// The color of the text.
+		//@property (nonatomic, assign) uint color;
+		
+		/// The bounds of the actual characters inside the text field.
+		//@property (nonatomic, readonly) SPRectangle *textBounds;
+		
+		/// Allows using kerning information with a bitmap font (where available). Default is YES.
+		//@property (nonatomic, assign) BOOL kerning;
+		
+		#endregion
+
+		#region Constructors
+		
+		/// Initialize a text field with all important font properties. _Designated Initializer_.
+		[Export("initWithWidth:height:text:fontName:fontSize:color:")]
+		IntPtr Constructor(float width, float height, string text, string fontName, float size, uint color);
+		
+		/// Initialize a text field with default settings (Helvetica, 14pt, black).
+		//- (id)initWithWidth:(float)width height:(float)height text:(NSString*)text;
+		[Export("initWithWidth:height:text:")]
+		IntPtr Constructor(float width, float height, string text);
+		
+		/// Initialize a 128x128 textField (Helvetica, 14pt, black).
+		//- (id)initWithText:(NSString *)text;
+		[Export("initWithText:")]
+		IntPtr Constructor(string text);
+		
+		#endregion
+		
+		#region Methods
+		
+		
+		#endregion
+	}
 	#endregion
 
 	#region SPBitmapFont (TODO) 

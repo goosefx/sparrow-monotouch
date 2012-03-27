@@ -52,7 +52,7 @@ Global
 		{BA173947-0754-41AE-B736-B0809389DB2E} = {7415AC8E-7FE6-482D-AD96-21C93E5615EB}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = UnitTests\UnitTests.csproj
+		StartupItem = Examples\HelloWorld\HelloWorld.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
 		$1.inheritsSet = null
