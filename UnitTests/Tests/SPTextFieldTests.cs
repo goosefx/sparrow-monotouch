@@ -75,8 +75,7 @@ namespace UnitTests
 			Assert.False(tf.Kerning);
 			Assert.False(tb.IsEmpty);
 			
-			#endregion
-			
+			#endregion		
 		}
 	}
 }
