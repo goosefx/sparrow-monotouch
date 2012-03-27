@@ -52,17 +52,15 @@ namespace HelloWorld
 			// set root view controller
 			window.RootViewController = rootViewController;
 			
-			// create a custom sparrow stage (does not work by default)
-			// you have to regenerate Sparrow.dll without /e switch of btouch :(
-			
-			// GameStage game = new GameStage(frame.Size.Width, frame.Size.Height);
-			// game.Color = 0x0000ff;
-			// sparrowView.Stage = game;
-			
-			// create a core sparrow stage (working by default)
+			// create a stage
 			SPStage stage = new SPStage(frame.Size.Width, frame.Size.Height);
-			stage.Color = 0x0000ff;
+			stage.Color = 0x2000a0;
 			sparrowView.Stage = stage;
+			
+			// create and add our hello world text field to the stage
+			SPTextField text = new SPTextField(frame.Size.Width, 50.0f, "Hello World!", "Helvetica", 30.0f, SPColor.White);
+			text.Y = (frame.Size.Height - 50.0f) / 2.0f; // vertical center
+			stage.Add(text);
 			
 			// make the window visible
 			window.MakeKeyAndVisible();
