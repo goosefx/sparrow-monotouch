@@ -17,7 +17,7 @@ Sparrow targeted on making game development as easy and hassle-free as possible.
  - [SPSprite](api/SPSprite.md) *(TODO)*
  - [SPCompiledSprite](api/SPCompiledSprite.md) *(TODO)*
  - [SPButton](api/SPButton.md) *(TODO)*
- - [SPTextField](api/SPTextField.md) *(TODO)*
+ - [SPTextField](api/SPTextField.md)
  
 ### Event Handling
 
@@ -64,11 +64,11 @@ Sparrow targeted on making game development as easy and hassle-free as possible.
 
 ### Other
 
- - [SPColor](api/SPColor.md)
+ - [SPView](api/SPView.md)
  - [SPPoolObject](api/SPPoolObject.md) ([SPPoolInfo](api/SPPoolObject.md))
  - [SPRenderSupport](api/SPRenderSupport.md) *(TODO)*
+ - [SPColor](api/SPColor.md)
  - [SPUtils](api/SPUtils.md) *(TODO)*
- - [SPView](api/SPView.md) *(TODO)*
     
 ---
 

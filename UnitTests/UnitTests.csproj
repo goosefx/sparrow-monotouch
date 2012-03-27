@@ -61,6 +61,9 @@
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
     <Reference Include="MonoTouch.NUnitLite" />
+    <Reference Include="Sparrow">
+      <HintPath>..\Sparrow\bin\Sparrow.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -75,15 +78,17 @@
     <Compile Include="Tests\SPPointTests.cs" />
     <Compile Include="Tests\SPRectangleTests.cs" />
     <Compile Include="Tests\SPMatrixTests.cs" />
+    <Compile Include="Tests\SPTextFieldTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Tests\" />
+    <Folder Include="Media\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sparrow\Sparrow.csproj">
-      <Project>{6ACAC2CE-7D95-4518-839E-7AA5C3A94969}</Project>
-      <Name>Sparrow</Name>
-    </ProjectReference>
+    <Content Include="Media\desyrel.fnt" />
+    <Content Include="Media\desyrel.png" />
+    <Content Include="Media\desyrel%402x.png" />
+    <Content Include="Media\desyrel%402x.fnt" />
   </ItemGroup>
 </Project>

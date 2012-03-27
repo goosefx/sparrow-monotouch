@@ -39,6 +39,7 @@ namespace HelloWorld
 			
 			//SPAudioEngine.StartWithCategory(Sparrow.SPAudioSessionCategory.AmbientSound);
 			SPStage.SupportHighResolutions = true; // use @2x textures on suitable hardware
+			SPStage.DoubleResolutionsOnPad = true; // use @2x on iPad 1+2, @4x on iPad 3
 			
 			// create sparrow view
 			sparrowView = new SPView(frame);

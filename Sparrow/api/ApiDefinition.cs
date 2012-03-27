@@ -697,82 +697,105 @@ namespace Sparrow
 	#region SPImage (TODO) 
 	#endregion
 	
-	#region SPTextField (TODO) 
+	#region SPTextField (DONE) 
+	
 	[BaseType (typeof(SPDisplayObjectContainer))]
 	[DisableDefaultCtor]
 	public interface SPTextField
 	{
 		#region Static
 		
-		/// Makes a bitmap font available at any text field, manually providing the texture.
-		/// 
-		/// @return The name of the font as defined in the font XML. 
-		//+ (NSString *)registerBitmapFontFromFile:(NSString*)path texture:(SPTexture *)texture;
+		[Static, Export("registerBitmapFontFromFile:texture:")]
+		string RegisterBitmapFont(string path, SPTexture texture);
 		
-		/// Makes a bitmap font available at any text field, using the texture defined in the file.
-		/// 
-		/// @return The name of the font as defined in the font XML. 
-		//+ (NSString *)registerBitmapFontFromFile:(NSString*)path;
+		[Static, Export("registerBitmapFontFromFile:")]
+		string RegisterBitmapFont(string path);
 		
-		/// Releases the bitmap font.
-		//+ (void)unregisterBitmapFont:(NSString *)name;
-
+		[Static, Export("unregisterBitmapFont:")]
+		void UnregisterBitmapFont(string name);
+		
 		#endregion
 		
 		#region Properties
 		
-		/// The displayed text.
-		//@property (nonatomic, copy) NSString *text;
+		[Export("text", ArgumentSemantic.Copy)]
+		string Text
+		{
+			get;
+			set;
+		}
 		
-		/// The name of the font.
-		//@property (nonatomic, copy) NSString *fontName;
+		[Export("fontName", ArgumentSemantic.Copy)]
+		string FontName
+		{
+			get;
+			set;
+		}
 		
-		/// The size of the font. For bitmap fonts, use `SP_NATIVE_FONT_SIZE` for the original size.
-		//@property (nonatomic, assign) float fontSize;
+		[Export("fontSize", ArgumentSemantic.Assign)]
+		float FontSize
+		{
+			get;
+			set;
+		}
 		
-		/// The horizontal alignment of the text.
-		//@property (nonatomic, assign) SPHAlign hAlign;
+		[Export("hAlign", ArgumentSemantic.Assign)]
+		SPHorizontalAlignment HorizontalAlignment
+		{
+			get;
+			set;
+		}
 		
-		/// The vertical alignment of the text.
-		//@property (nonatomic, assign) SPVAlign vAlign;
+		[Export("vAlign", ArgumentSemantic.Assign)]
+		SPVerticalAlignment VerticalAlignment
+		{
+			get;
+			set;
+		}
 		
-		/// Allows displaying a border around the edges of the text field. Useful for visual debugging.
-		//@property (nonatomic, assign) BOOL border;
+		[Export("border", ArgumentSemantic.Assign)]
+		bool Border
+		{
+			get;
+			set;
+		}
 		
-		/// The color of the text.
-		//@property (nonatomic, assign) uint color;
+		[Export("color", ArgumentSemantic.Assign)]
+		uint Color
+		{
+			get;
+			set;
+		}
 		
-		/// The bounds of the actual characters inside the text field.
-		//@property (nonatomic, readonly) SPRectangle *textBounds;
+		[Export("textBounds")]
+		SPRectangle TextBounds
+		{
+			get;
+		}
 		
-		/// Allows using kerning information with a bitmap font (where available). Default is YES.
-		//@property (nonatomic, assign) BOOL kerning;
+		[Export("kerning", ArgumentSemantic.Assign)]
+		bool Kerning
+		{
+			get;
+			set;
+		}
 		
 		#endregion
 
 		#region Constructors
 		
-		/// Initialize a text field with all important font properties. _Designated Initializer_.
 		[Export("initWithWidth:height:text:fontName:fontSize:color:")]
 		IntPtr Constructor(float width, float height, string text, string fontName, float size, uint color);
 		
-		/// Initialize a text field with default settings (Helvetica, 14pt, black).
-		//- (id)initWithWidth:(float)width height:(float)height text:(NSString*)text;
 		[Export("initWithWidth:height:text:")]
 		IntPtr Constructor(float width, float height, string text);
 		
-		/// Initialize a 128x128 textField (Helvetica, 14pt, black).
-		//- (id)initWithText:(NSString *)text;
 		[Export("initWithText:")]
 		IntPtr Constructor(string text);
 		
 		#endregion
-		
-		#region Methods
-		
-		
-		#endregion
 	}
+	
 	#endregion
 
 	#region SPBitmapFont (TODO) 
@@ -789,42 +812,33 @@ namespace Sparrow
 	{
 		#region Static
 		
-		[Static]
-		[Export("mainStage")]
+		[Static, Export("mainStage")]
 		SPStage MainStage
 		{
 			get;
 		}
 		
-		[Static]
-		[Export("supportHighResolutions")]
+		[Static, Export("supportHighResolutions")]
 		bool SupportHighResolutions
 		{
 			get;
 			set;
 		}
 	
-		// TODO: make internal and add wrapper property in extras
-		// to set DoubleResolutionsOnPad using
-		// SetSupportHighResolutions(hd, doubleOnPad)
-		[Static]
-		[Export("doubleResolutionsOnPad")]
-		bool DoubleResolutionsOnPad
+		[Static, Internal, Export("doubleResolutionsOnPad")]
+		bool _DoubleResolutionsOnPad
 		{
 			get;
 		}
 		
-		[Static]
-		[Export("contentScaleFactor")]
+		[Static, Export("contentScaleFactor")]
 		float ContentScaleFactor
 		{
 			get;
 		}
 		
-		// TODO: internal
-		[Static]
-		[Export("setSupportHighResolutions")]
-		void SetSupportHighResolutions(bool hd, bool doubleOnPad);
+		[Static, Internal, Export("setSupportHighResolutions:doubleOnPad:")]
+		void _SetSupportHighResolutions(bool hd, bool doubleOnPad);
 		
 		#endregion
 		
@@ -890,6 +904,14 @@ namespace Sparrow
 	#endregion
 	
 	#region SPTexture (TODO) 
+	
+	[BaseType (typeof(NSObject))]
+	[DisableDefaultCtor]
+	public interface SPTexture
+	{
+		
+	}
+	
 	#endregion
 	
 	#region SPSubTexture (TODO) 
@@ -906,14 +928,6 @@ namespace Sparrow
 	
 	#region SPEvent (DONE*)
 	
-	/// <summary>
-	/// The SPEvent class contains data that describes an event.
- 	/// </summary>
- 	/// <remarks>
- 	/// SPEventDispatcher create instances of this class and send them to registered listeners. An event
-	/// contains information that characterizes an event, most importantly the event type and if the event 
-	/// bubbles. The target of an event is the object that dispatched it.
- 	/// </remarks>
 	[BaseType(typeof(NSObject))]
 	[DisableDefaultCtor]
 	public interface SPEvent
@@ -1018,17 +1032,7 @@ namespace Sparrow
 	#endregion
 	
 	#region SPView (DONE)
-	/// <summary>
-	/// An SPView is the UIView object that Sparrow renders its content into. 
-	/// </summary>
-	/// <remarks>
-	/// Add it to the UIKit display list like any other view. Beware that Sparrow will only receive
-	/// multitouch events if the `multitouchEnabled` property of the view is enabled.
-	/// 
-	/// To start Sparrow, connect this class to your stage subclass and call the `start` method. When
-	/// the application ends or moves into the background, you should call the `stop` method.
-	/// </remarks>
-	
+
 	[BaseType(typeof(UIView))]
 	public interface SPView
 	{
@@ -1039,10 +1043,7 @@ namespace Sparrow
 		{ 
 			get;
 		}
-		
-		/// <summary>
-		/// Assigns the desired framerate. Only dividers of 60 are allowed (60, 30, 20, 15, 12, 10, etc.)
-		/// </summary>
+
 		[Export("frameRate", ArgumentSemantic.Assign)]
 		float FrameRate
 		{
@@ -1050,9 +1051,6 @@ namespace Sparrow
 			set;
 		}
 		
-		/// <summary>
-		/// The stage object that will be processed.
-		/// </summary>
 		[Export("stage", ArgumentSemantic.Retain)]
 		SPStage Stage
 		{
@@ -1061,25 +1059,19 @@ namespace Sparrow
 		}
 
 		#endregion
-
+		
 		#region Constructors
 		
 		[Export("initWithFrame:")]
 		IntPtr Constructor(RectangleF frame);
-		
+
 		#endregion
 		
 		#region Methods
 		
-		/// <summary>
-		/// Starts rendering and event handling.
-		/// </summary>
 		[Export ("start")]
 		void Start();
 
-		/// <summary>
-		/// Stops rendering and event handling. Call this when the application moves into the background.
-		/// </summary>
 		[Export ("stop")]
 		void Stop();
 		
