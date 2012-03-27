@@ -1,7 +1,7 @@
 [Sparrow Framework 1.3 MonoTouch Documentation](../index.md) 
 # SPStage
 
-  public class SPStage : SPDisplayObjectContainer
+    public class SPStage : SPDisplayObjectContainer
   
 An SPStage is the root of the display tree. It represents the rendering area of the application.
  
@@ -11,11 +11,11 @@ The stage allows you to access the native view object it is drawing its content 
  
 You can access the stage from anywhere in your code with the following static method:
 
-  SPStage.MainStage
+    SPStage.MainStage
  
 A stage also contains a default juggler which you can use for your animations. It is advanced automatically once per frame. You can access this juggler from any display object by calling
  
-  SPStage.MainStage.Juggler
+    SPStage.MainStage.Juggler
 
 ## Properties
 
@@ -26,21 +26,21 @@ A stage also contains a default juggler which you can use for your animations. I
 
 ## Constructors
 
-  new SPStage(float width, float height)
+    new SPStage(float width, float height)
   
 Initializes a stage with a certain size in points.
 
-  new SPStage()
+    new SPStage()
   
 Initializes a fullscreen stage.
 
 ## Methods
 
-  void AdvanceTime(double seconds);
+    void AdvanceTime(double seconds);
 
 Dispatches an enter frame event on all children and advances the [juggler](SPJuggler.md).
 
-  void ProcessTouches(NSSet touches);
+    void ProcessTouches(NSSet touches);
 
 Process a new set up touches. Dispatches touch events on affected children.
 
