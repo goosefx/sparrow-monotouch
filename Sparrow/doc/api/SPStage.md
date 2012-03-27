@@ -24,6 +24,13 @@ A stage also contains a default juggler which you can use for your animations. I
  - `Juggler`: A [juggler](SPJuggler.md) that is automatically advanced once per frame. *(readonly)*
  - `NativeView` : The native [view](SPView.md) the stage is connected to. *(readonly)*
 
+## Static Properties
+
+ - `MainStage` : Returns the first available stage instance. (In most cases, there is only one stage, anyway.) *(readonly)*
+ - `ContentScaleFactor` : The current content scale factor. *(readonly)*
+ - `SupportHighResolutions` : Enables support for high resolutions (aka retina displays).
+ - `DoubleResolutionsOnPad` : Determines if pad devices use twice the resolution. If both SupportHighResolutions and DoubleResolutionsOnPad is set to `true`, pad devices will use twice the resolution ('@2x' on iPad 1+2, '@4x' on iPad 3+)
+
 ## Constructors
 
     new SPStage(float width, float height)
@@ -43,13 +50,6 @@ Dispatches an enter frame event on all children and advances the [juggler](SPJug
     void ProcessTouches(NSSet touches);
 
 Process a new set up touches. Dispatches touch events on affected children.
-
-## Static Properties
-
- - `MainStage` : Returns the first available stage instance. (In most cases, there is only one stage, anyway.) *(readonly)*
- - `ContentScaleFactor` : The current content scale factor. *(readonly)*
- - `SupportHighResolutions` : Enables support for high resolutions (aka retina displays).
- - `DoubleResolutionsOnPad` : Determines if pad devices use twice the resolution. If both SupportHighResolutions and DoubleResolutionsOnPad is set to `true`, pad devices will use twice the resolution ('@2x' on iPad 1+2, '@4x' on iPad 3+)
 
 ---
 
