@@ -12,7 +12,7 @@ Sparrow targeted on making game development as easy and hassle-free as possible.
  - [SPQuad](api/SPQuad.md)
  - [SPImage](api/SPImage.md) *(TODO)*
  - [SPMovieClip](api/SPMovieClip.md) *(TODO)*
- - [SPStage](api/SPStage.md) *(TODO)*
+ - [SPStage](api/SPStage.md)
  - [SPDisplayObjectContainer](api/SPDisplayObjectContainer.md)
  - [SPSprite](api/SPSprite.md) *(TODO)*
  - [SPCompiledSprite](api/SPCompiledSprite.md) *(TODO)*
