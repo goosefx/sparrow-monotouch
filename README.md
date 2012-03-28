@@ -15,7 +15,7 @@ Currently only a few classes are bound to MonoTouch. So far the bindings seems t
 
 The reason for this: The `/e` argument of `btouch` (see bug [#3234](https://bugzilla.xamarin.com/show_bug.cgi?id=3234)). That's why `mtouch` does not generate subclassable types. To bad that `MonoDevelop` does not allow to change this default behavior (for Binding Projects). As a workaround a `MakeFile` now builds `Sparrow.dll`.
 
-If you need to build it yourself (as long as I do not provide `Sparrow.dll` as a download) open up a console, navigate inside the `sparrow-monotouch` folder and run the following command:
+If you need to build it yourself (as long as I do not provide `Sparrow.dll` as a download) open `Terminal`, navigate to `sparrow-monotouch/` and run the following command:
 
 	make all
 	
