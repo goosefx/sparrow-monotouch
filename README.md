@@ -13,18 +13,19 @@
 
 Currently only a few classes are bound to MonoTouch. So far the bindings seems to work with one exception: You can't derrive from a Sparrow class if you build everything with MonoDevelop.
 
-**Workaround**
+The reason for this: The `/e` argument of `btouch` (see bug [#3234](https://bugzilla.xamarin.com/show_bug.cgi?id=3234)). That's why `mtouch` does not generate subclassable types. To bad that `MonoDevelop` does not allow to change this default behavior (for Binding Projects). As a workaround a `MakeFile` now builds `Sparrow.dll`.
 
-The reason for this: The `/e` argument of `btouch` (see bug [#3234](https://bugzilla.xamarin.com/show_bug.cgi?id=3234)). That's why `mtouch` does not generate subclassable types. To bad that `MonoDevelop` does not allow me to change this default behavior (for Binding Projects). As a workaround you have to run `btouch` again but without `/e`:
+If you need to build it yourself (as long as I do not provide `Sparrow.dll` as a download) open up a console, navigate inside the `sparrow-monotouch` folder and run the follwing command:
 
-	/Developer/MonoTouch/usr/bin/btouch /d:DEBUG ApiDefinition.cs /s:StructsAndEnums.cs /tmpdir:obj/Debug/ios/ /sourceonly:obj/Debug/ios/sources.list	
-And of cause every following build step :( 
+	make all
 	
-	/Developer/MonoTouch/usr/bin/smcs /noconfig /debug:full /debug+ /optimize- /out:obj/Debug/Sparrow.dll …
-	cp '/Users/marcus/Projects/iOS/sparrow-monotouch/Sparrow/obj/Debug/Sparrow.dll.mdb' '/Users/marcus/Projects/iOS/sparrow-monotouch/Sparrow/bin/Debug/Sparrow.dll.mdb'
-	cp '/Users/marcus/Projects/iOS/sparrow-monotouch/Sparrow/obj/Debug/Sparrow.dll' '/Users/marcus/Projects/iOS/sparrow-monotouch/Sparrow/bin/Debug/Sparrow.dll'
+That's it. To clean up temporary files you might run as well:
 
-## How to build universial static library
+	make clean
+	
+You have successfully build `Sparrow.dll`. You will find the binding library inside `sparrow-monotouch/Sparrow/bin/`.
+	
+## How to build libSparrow.a as an universial static library
 
 	$ git clone https://github.com/PrimaryFeather/Sparrow-Framework.git
 
