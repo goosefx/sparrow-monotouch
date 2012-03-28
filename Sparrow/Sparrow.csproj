@@ -10,13 +10,13 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Sparrow</RootNamespace>
     <AssemblyName>Sparrow</AssemblyName>
+    <ReleaseVersion>0.2</ReleaseVersion>
+    <SynchReleaseVersion>false</SynchReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -36,36 +36,22 @@
     <Reference Include="monotouch" />
   </ItemGroup>
   <ItemGroup>
-    <ObjcBindingApiDefinition Include="api\ApiDefinition.cs" />
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ObjcBindingCoreSource Include="api\StructsAndEnums.cs" />
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Xamarin.ObjcBinding.CSharp.targets" />
   <ItemGroup>
     <Compile Include="libSparrow.linkwith.cs">
       <DependentUpon>libSparrow.a</DependentUpon>
     </Compile>
-    <Compile Include="extras\SPDisplayObjectContainer.cs" />
-    <Compile Include="extras\SPEventDispatcher.cs" />
-    <Compile Include="extras\SPDisplayObject.cs" />
-    <Compile Include="extras\SPEvent.cs" />
-    <Compile Include="extras\SPColor.cs" />
-    <Compile Include="extras\SPQuad.cs" />
-    <Compile Include="extras\SPPoint.cs" />
-    <Compile Include="extras\SPRectangle.cs" />
-    <Compile Include="extras\SPPoolObject.cs" />
-    <Compile Include="extras\SPMatrix.cs" />
-    <Compile Include="extras\SPStage.cs" />
-    <Compile Include="extras\SPTextField.cs" />
-    <Compile Include="extras\SPTexture.cs" />
+    <Compile Include="Extras.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingNativeLibrary Include="libSparrow.a" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="api\" />
-    <Folder Include="extras\" />
     <Folder Include="objc_header\" />
   </ItemGroup>
   <ItemGroup>

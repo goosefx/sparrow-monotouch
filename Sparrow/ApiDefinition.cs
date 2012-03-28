@@ -906,7 +906,7 @@ namespace Sparrow
 	#region SPTexture (TODO) 
 	
 	public delegate void _SPTextureDrawingDelegate(IntPtr context);
-	
+
 	[BaseType (typeof(NSObject))]
 	[DisableDefaultCtor]
 	public interface SPTexture
