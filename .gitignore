@@ -3,6 +3,7 @@
 *.userprefs
 
 # Build Folders 
-bin
+Examples/HelloWorld/bin
+UnitTests/bin
 obj
 tmp

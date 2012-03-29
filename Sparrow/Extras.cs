@@ -851,6 +851,19 @@ namespace Sparrow
 		{
 			
 		}
+		
+		public void AdjustTextureCoordinates(ref float[] texCoords, ref float[] targetTextCoords, int numVertices)
+		{
+			unsafe
+			{
+				fixed (float* pTexCoords = texCoords, pTargetTextCoords = targetTextCoords)
+				{
+					this._AdjustTextureCoordinates(new IntPtr((void*)pTexCoords), new IntPtr((void*)pTargetTextCoords), numVertices);
+				}
+		
+			}
+		}
+		
 	}
 	
 	#endregion

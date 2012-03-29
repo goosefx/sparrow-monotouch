@@ -911,6 +911,89 @@ namespace Sparrow
 	[DisableDefaultCtor]
 	public interface SPTexture
 	{
+		#region Static
+		
+		/// Factory method. Creates an empty (white) texture.
+		//+ (SPTexture *)emptyTexture;		
+		[Static, Export("emptyTexture")]
+		SPTexture EmptyTexture();
+		
+		#endregion
+		
+		#region Properties
+		
+		/// The width of the image in points.
+		//@property (nonatomic, readonly) float width;
+		[Export("width")]
+		float Width
+		{
+			get;
+		}
+		
+		/// The height of the image in points.
+		//@property (nonatomic, readonly) float height;
+		[Export("height")]
+		float Height
+		{
+			get;
+		}
+		
+		/// The OpenGL texture ID.
+		//@property (nonatomic, readonly) uint textureID;
+		[Export("textureID")]
+		uint TextureID
+		{
+			get;
+		}
+		
+		/// Indicates if the texture should repeat like a wallpaper or stretch the outermost pixels.
+		/// Note: this makes sense only in textures with sidelengths that are powers of two and that are
+		/// not loaded from a texture atlas (i.e. no subtextures). (Default: `NO`)
+		//@property (nonatomic, assign) BOOL repeat;
+		[Export("repeat", ArgumentSemantic.Assign)]
+		bool Repeat
+		{
+			get;
+			set;
+		}
+		
+		/// The filter type influences how the texture appears when it is scaled up or down. 
+		/// (Default: `SPTextureFilterBilinear`)
+		//@property (nonatomic, assign) SPTextureFilter filter;
+		[Export("filter", ArgumentSemantic.Assign)]
+		SPTextureFilter Filter
+		{
+			get;
+			set;
+		}
+		
+		/// Indicates if the alpha values are premultiplied into the RGB values.
+		//@property (nonatomic, readonly) BOOL hasPremultipliedAlpha;
+		[Export("hasPremultipliedAlpha")]
+		bool HasPremultipliedAlpha
+		{
+			get;
+		}
+		
+		/// The scale factor, which influences `width` and `height` properties.
+		//@property (nonatomic, readonly) float scale;
+		[Export("scale")]
+		float Scale
+		{
+			get;
+		}
+		
+		/// The frame indicates how the texture should be displayed within an image. (Default: `null`)
+		//@property (nonatomic, copy) SPRectangle *frame;
+		[Export("frame", ArgumentSemantic.Copy)]
+		SPRectangle Frame
+		{
+			get;
+			set;
+		}
+		
+		#endregion
+		
 		#region Constructors
 		
 		/// Initializes a texture with a certain size (in points) and a block containing Core Graphics commands. 
@@ -943,6 +1026,16 @@ namespace Sparrow
 		[Export("initWithRegion:ofTexture:")]
 		IntPtr Constructor(SPRectangle region, SPTexture texture);
 
+		#endregion
+		
+		#region Methods
+		
+		/// Converts texture coordinates into the format required for rendering.
+		//- (void)adjustTextureCoordinates:(const float *)texCoords saveAtTarget:(float *)targetTexCoords 
+		//                     numVertices:(int)numVertices;
+		[Internal, Export("adjustTextureCoordinates:saveAtTarget:numVertices:")]
+		void _AdjustTextureCoordinates(IntPtr texCoords, IntPtr targetTextCoords, int numVertices);
+		
 		#endregion
 	}
 	

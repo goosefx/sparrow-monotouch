@@ -91,5 +91,7 @@
     <Content Include="Media\desyrel.png" />
     <Content Include="Media\desyrel%402x.png" />
     <Content Include="Media\desyrel%402x.fnt" />
+    <Content Include="Media\logo%402x.png" />
+    <Content Include="Media\logo.png" />
   </ItemGroup>
 </Project>
