@@ -33,7 +33,6 @@ Sparrow targeted on making game development as easy and hassle-free as possible.
  - [SPTexture](api/SPTexture.md)
  - [SPSubTexture](api/SPSubTexture.md) *(TODO)*
  - [SPRenderTexture](api/SPRenderTexture.md) *(TODO)*
- - [SPGLTexture](api/SPGLTexture.md) *(TODO)*
  - [SPTextureAtlas](api/SPTextureAtlas.md) *(TODO)*
  - [SPBitmapFont](api/SPBitmapFont.md) *(TODO)*
  - [SPBitmapChar](api/SPBitmapChar.md) *(TODO)*
