@@ -80,6 +80,7 @@
     <Compile Include="Tests\SPMatrixTests.cs" />
     <Compile Include="Tests\SPTextFieldTests.cs" />
     <Compile Include="Tests\SPTextureTests.cs" />
+    <Compile Include="Tests\SPImageTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

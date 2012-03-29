@@ -694,7 +694,54 @@ namespace Sparrow
 	
 	#endregion
 	
-	#region SPImage (TODO) 
+	#region SPImage (TODO)
+	
+	[BaseType(typeof(SPQuad))]
+	[DisableDefaultCtor]
+	public interface SPImage
+	{
+		#region Properties
+		
+		/// The texture that is displayed on the quad.
+		//@property (nonatomic, retain) SPTexture *texture;
+		[Export("texture", ArgumentSemantic.Retain)]
+		SPTexture Texture
+		{
+			get;
+			set;
+		}
+		
+		#endregion
+		
+		#region Constructors
+		
+		/// Initialize a quad with a texture mapped onto it. _Designated Initializer_.
+		//- (id)initWithTexture:(SPTexture*)texture;
+		[Export("initWithTexture:")]
+		IntPtr Constructor(SPTexture texture);
+		
+		/// Initialize a quad with a texture loaded from a file.
+		//- (id)initWithContentsOfFile:(NSString*)path;
+		[Export("initWithContentsOfFile:")]
+		IntPtr Constructor(string path);
+		
+		#endregion
+		
+		#region Methods
+		
+		/// Sets the texture coordinates of a vertex. Coordinates are in the range [0, 1].
+		//- (void)setTexCoords:(SPPoint*)coords ofVertex:(int)vertexID;
+		[Export("setTexCoords:ofVertex:")]
+		void SetTexCoords(SPPoint coords, int vertexID);
+		
+		/// Gets the texture coordinates of a vertex.
+		//- (SPPoint*)texCoordsOfVertex:(int)vertexID;
+		[Export("texCoordsOfVertex:")]
+		SPPoint GetTexCoords(int vertexID);
+
+	#endregion
+	}
+	
 	#endregion
 	
 	#region SPTextField (DONE) 
