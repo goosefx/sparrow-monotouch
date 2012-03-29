@@ -51,7 +51,7 @@ The texture class itself does not make any use of the frame data. It's up to cla
  - `TextureID` : The OpenGL texture ID. *(readonly)*
  - `Scale` : The scale factor, which influences `Width` and `Height` properties. *(readonly)*
  - `Frame` : The frame indicates how the texture should be displayed within an image. (Default: `null`)
-  - `Repeat` : Indicates if the texture should repeat like a wallpaper or stretch the outermost pixels. Note: this makes sense only in textures with sidelengths that are powers of two and that are not loaded from a texture atlas (i.e. no subtextures). (Default: `false`)
+ - `Repeat` : Indicates if the texture should repeat like a wallpaper or stretch the outermost pixels. Note: this makes sense only in textures with sidelengths that are powers of two and that are not loaded from a texture atlas (i.e. no subtextures). (Default: `false`)
  - `Filter` : The filter type influences how the texture appears when it is scaled up or down. (Default: `SPTextureFilter.Bilinear`)
  - `HasPremultipliedAlpha` : Indicates if the alpha values are premultiplied into the RGB values. *(readonly)*
  
